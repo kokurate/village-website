@@ -9,9 +9,16 @@ use App\Models\User;
 class LoginForm extends Component
 {
     public $login_id, $password;
+    public $returnUrl;
+
+    public function mount()
+    {
+        $this->returnUrl = request()->returnUrl;
+    }
 
     public function LoginHandler()
     {
+        // dd($this->returnUrl);
         $fieldType = filter_var($this->login_id, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         if($fieldType == 'email'){
             $this->validate([
@@ -43,7 +50,12 @@ class LoginForm extends Component
                 Auth::guard('web')->logout();
                 return redirect()->route('author.login')->with('fail', 'Akun anda diblokir, silahkan menghubungi admin');
             }else{
-                return redirect()->route('author.home');
+                // return redirect()->route('author.home');
+                if($this->returnUrl != null){
+                    return redirect()->to($this->returnUrl);
+                }else{
+                    return redirect()->route('author.home');
+                }
             }
         }else{
             session()->flash('fail','Email/username atau password salah');
