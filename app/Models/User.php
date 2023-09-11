@@ -47,4 +47,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    # 1 user belongsto Type in column type from users table
+    public function authorType()
+    {
+        return $this->belongsTo(Type::class,'type','id');
+    }
 }
