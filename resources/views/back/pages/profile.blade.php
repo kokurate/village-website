@@ -32,7 +32,7 @@
 <div class="row">
     <div class="card">
         <div class="card-header">
-          <ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs">
+          <ul class="nav nav-tabs card-header-tabs nav-fill" data-bs-toggle="tabs">
             <li class="nav-item">
               <a href="#tabs-detail" class="nav-link active" data-bs-toggle="tab">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -54,15 +54,16 @@
         </div>
         <div class="card-body">
           <div class="tab-content">
-            <div class="tab-pane active show" id="tabs-detail">
+            <div class="tab-pane active show btn" id="tabs-detail">
               <h4></h4>
               <div>
                @livewire('author-personal-details')
               </div>
             </div>
-            <div class="tab-pane" id="tabs-password">
-              <h4>Settings tab</h4>
-              <div>Donec ac vitae diam amet vel leo egestas consequat rhoncus in luctus amet, facilisi sit mauris accumsan nibh habitant senectus</div>
+            <div class="tab-pane btn" id="tabs-password">
+              <div>
+                @livewire('author-change-password-form')
+              </div>
             </div>
           </div>
         </div>

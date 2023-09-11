@@ -26,7 +26,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Biography</label>
-            <textarea class="form-control" name="example-textarea-input" rows="6" placeholder="Content.." wire:model="biography"></textarea>
+            <textarea class="form-control" name="example-textarea-input" rows="10" placeholder="Content.." wire:model="biography"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
     </form>
