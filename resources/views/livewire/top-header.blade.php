@@ -118,7 +118,7 @@
                  </svg>
                 </span>
                 <span class="nav-link-title">
-                  Menu dan Kategori
+                  Kategori dan Subkategori
                 </span>
               </a>
             </li>     

@@ -12,11 +12,11 @@
                 <div class="page-pretitle">
                     <ol class="breadcrumb" aria-label="breadcrumbs">
                         <li class="breadcrumb-item"><a href="{{ route('author.home') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><a href="#">Menu & Kategori</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="#">Kategori & Subkategori</a></li>
                     </ol>
                 </div>
                 <h2 class="page-title">
-                    Menu & Kategori
+                    Kategori & Subkategori
                 </h2>
             </div>
         </div>
@@ -37,6 +37,10 @@
         window.addEventListener('hideCategoriesModal', function(e){
             $('#categories_modal').modal('hide');
         });
-        
+
+        window.addEventListener('showCategoriesModal', function(e){
+            $('#categories_modal').modal('show');
+        });
+
     </script>
 @endpush

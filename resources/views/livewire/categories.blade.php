@@ -6,10 +6,10 @@
                 <div class="card-status-start bg-primary"></div>
                 <div class="card-header mt-1">
                     <ul class="nav nav-tabs card-header-tabs">
-                        <h3 class="d-flex ml-2">Menu</h3>
+                        <h3 class="d-flex ml-2">Kategori</h3>
                         <li class="nav-item ms-auto">
                             <a href="" class="btn btn-sm btn-primary" data-bs-toggle='modal'
-                                data-bs-target='#categories_modal'>Tambah Menu</a>
+                                data-bs-target='#categories_modal'>Tambah Kategori</a>
                         </li>
                     </ul>
                 </div>
@@ -18,23 +18,23 @@
                         <table class="table table-vcenter card-table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Nama Menu</th>
-                                    <th>Jumlah Kategori</th>
+                                    <th>Nama Kategori</th>
+                                    <th>Jumlah Subkategori</th>
                                     <th class="w-1"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($categories as $menu)
+                                @forelse ($categories as $category)
                                     
                                
                                 <tr>
-                                    <td class="text-muted">{{ $menu->category_name }}</td>
+                                    <td class="text-muted">{{ $category->category_name }}</td>
                                     <td class="text-muted">
-                                        {{ $menu->subcategories->count() }}
+                                        {{ $category->subcategories->count() }}
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="#" class="btn btn-sm btn-primary">Edit</a>&nbsp;
+                                            <a href="#" class="btn btn-sm btn-primary" wire:click.prevent='editCategory({{ $category->id }})'>Edit</a>&nbsp;
                                             <a href="#" class="btn btn-sm btn-danger">Hapus</a>
                                         </div>
                                     </td>
@@ -54,10 +54,10 @@
                 <div class="card-status-start bg-success"></div>
                 <div class="card-header mt-1">
                     <ul class="nav nav-tabs card-header-tabs">
-                        <h3 class="d-flex ml-2">Kategori</h3>
+                        <h3 class="d-flex ml-2">Subkategori</h3>
                         <li class="nav-item ms-auto">
                             <a href="" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#subcategories_modal">Tambah Kategori</a>
+                                data-bs-target="#subcategories_modal">Tambah Subkategori</a>
                         </li>
                     </ul>
                 </div>
@@ -66,8 +66,8 @@
                         <table class="table table-vcenter card-table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Nama Menu</th>
-                                    <th>Parent Menu</th>
+                                    <th>Nama Subkategori</th>
+                                    <th>Parent Kategori</th>
                                     <th>Jumlah Post</th>
                                     <th class="w-1"></th>
                                 </tr>
@@ -76,7 +76,7 @@
                                 <tr>
                                     <td class="text-muted">Any Name</td>
                                     <td class="text-muted">
-                                        Any Category
+                                        Any Subcategory
                                     </td>
                                     <td class="text-muted">
                                         20
