@@ -7,12 +7,12 @@
               <h2 class="page-title">
                 Users
               </h2>
-              <div class="text-muted mt-1">1-18 of 413 people</div>
+              <div class="text-muted mt-1">Pengguna Terdaftar ({{ $total }})</div>
             </div>
             <!-- Page title actions -->
             <div class="col-auto ms-auto d-print-none">
               <div class="d-flex">
-                <input type="search" class="form-control d-inline-block w-9 me-3" placeholder="Cari pengguna…">
+                <input type="search" class="form-control d-inline-block w-9 me-3" placeholder="Cari pengguna…" wire:model='search'>
                 <a href="#" class="btn btn-primary" data-bs-target='#add_author_modal' data-bs-toggle='modal'>
                   <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
@@ -71,7 +71,13 @@
 
       </div>
 
-      
+      <div class="row mt-4">
+        <div class="d-flex justify-content-center">
+            {{ $authors->links('livewire::bootstrap') }}
+        </div>
+    </div>
+    
+
     <!-- Modal Add  -->
     <div wire:ignore.self class="modal modal-blur fade" id="add_author_modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
