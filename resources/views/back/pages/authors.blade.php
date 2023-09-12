@@ -37,10 +37,19 @@
                 livewire.emit('resetForms');
             });
 
-    $(window).addEventListener('hide_add_author_modal', function(event){
+    window.addEventListener('hide_add_author_modal', function(event){
             $('#add_author_modal').modal('hide');
         });
 
+
+    window.addEventListener('showEditAuthorModal', function(event){
+        $('#edit_author_modal').modal('show');
+    });
+   
+    
+    window.addEventListener('hide_edit_author_modal', function(event){
+        $('#edit_author_modal').modal('hide');
+    });
 
   </script>
 @endpush

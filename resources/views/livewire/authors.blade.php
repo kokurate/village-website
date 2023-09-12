@@ -45,7 +45,7 @@
               </div>
             </div>
             <div class="d-flex">
-              <a href="#" class="card-btn">
+              <a href="#" class="card-btn" wire:click.prevent='editAuthor({{ $author }})'>
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
@@ -139,7 +139,83 @@
           </div>
         </div>
       </div> 
-      <!-- End Modal -->
+      <!-- End Modal  add -->
 
+       <!-- Modal Edit -->
+    <div wire:ignore.self class="modal modal-blur fade" id="edit_author_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit Pengguna</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form wire:submit.prevent='updateAuthor()' method="post">
+                  <input type="hidden" wire:model='selected_author_id'>
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="example-text-input" placeholder="Masukkan Nama" wire:model='name'>
+                        <span class="text-danger">@error('name') {{ $message }} @enderror</span>
+                    </div>
+  
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="text" class="form-control @error('email') is-invalid @enderror" name="example-text-input" placeholder="Masukkan email pengguna" wire:model='email'>
+                        <span class="text-danger">@error('email') {{ $message }} @enderror</span>
+                    </div>
+  
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="example-text-input" placeholder="Masukkan nama pengguna" wire:model='username'>
+                        <span class="text-danger">@error('username') {{ $message }} @enderror</span>
+                    </div>
+  
+                    <div class="mb-3">
+                        <label class="form-label">Tipe Pengguna</label>
+                        <div>
+                          <select class="form-select" wire:model='author_type'>
+                            @foreach(\App\Models\Type::all() as $type)
+                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                            @endforeach
+                          </select>
+                        </div>
+                        <span class="text-danger">@error('author_type') {{ $message }} @enderror</span>
+                    </div>
+  
+                    {{-- <div class="mb-3">
+                        <div class="form-label">Is direct publisher</div>
+                        <div>
+                          <label class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="direct_publisher" value="0" wire:model='direct_publisher'>
+                            <span class="form-check-label">No</span>
+                          </label>
+                          <label class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="direct_publisher" value="1" wire:model='direct_publisher'>
+                            <span class="form-check-label">Yes</span>
+                          </label>
+                        </div>
+                        <span class="text-danger">@error('direct_publisher') {{ $message }} @enderror</span>
+                      </div> --}}
+  
+                      <div class="mb-3">
+                        <div class="form-label">Blocked</div>
+                        <label class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" checked="" wire:model='blocked'>
+                          <span class="form-check-label"></span>
+                        </label>
+                      </div>
+  
+                      <div class="modal-footer">
+                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Perbarui</button>
+                      </div>
+  
+                </form>
+            </div>
+  
+          </div>
+        </div>
+      </div> 
+      <!-- End Modal Edit -->
 
 </div>

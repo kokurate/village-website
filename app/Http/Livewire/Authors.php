@@ -13,6 +13,9 @@ class Authors extends Component
 {
     // public $name, $email, $username, $author_type, $direct_publisher;
     public $name, $email, $username, $author_type;
+    public $selected_author_id;
+    public $blocked = 0;
+
 
     protected $listeners = [
         'resetForms'
@@ -92,6 +95,54 @@ class Authors extends Component
         }else{
             $this->dispatchBrowserEvent('error', ['message' => 'Anda sedang offline, periksa koneksi anda dan kirimkan formulir lagi nanti.']);
         }
+
+    }
+
+
+    public function editAuthor($author){
+        // dd(['open edit author modal', $author]);
+        $this->selected_author_id = $author['id'];
+        $this->name = $author['name'];
+        $this->email = $author['email'];
+        $this->username = $author['username'];
+        $this->author_type = $author['type'];
+        // $this->direct_publisher = $author['direct_publish'];
+        $this->blocked = $author['blocked'];
+
+        $this->dispatchBrowserEvent('showEditAuthorModal');
+    }
+
+    public function updateAuthor(){
+        $this->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$this->selected_author_id,
+            'username' => 'required|min:6|max:20|unique:users,username,'.$this->selected_author_id,
+        ],[
+            'name.required' => 'Nama tidak boleh kosong', 
+            'email.required' => 'Email tidak boleh kosong', 
+            'email.email' => 'Format email tidak sesuai', 
+            'email.unique' => 'Email sudah terdaftar',
+            'username.required' => 'username tidak boleh kosong', 
+            'username.min' => 'username minimal 6 karakter', 
+            'username.max' => 'username maskimal 20 karakter', 
+            'username.unique' => 'username sudah terdaftar', 
+        ]);
+
+        if($this->selected_author_id){
+            $author = User::find($this->selected_author_id);
+            $author->update([
+                'name' => $this->name,
+                'email' => $this->email,
+                'username' => $this->username,
+                'type' => $this->author_type,
+                'blocked' => $this->blocked,
+                // 'direct_publish' => $this->direct_publisher,
+            ]);
+        }
+
+
+        $this->dispatchBrowserEvent('success', ['message' => 'Detail pengguna berhasil diperbarui']);
+        $this->dispatchBrowserEvent('hide_edit_author_modal');
 
     }
 
