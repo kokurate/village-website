@@ -42,5 +42,10 @@
             $('#categories_modal').modal('show');
         });
 
+        window.addEventListener('hideSubCategoriesModal', function(e){
+            $('#subcategories_modal').modal('hide');
+        });
+
+
     </script>
 @endpush

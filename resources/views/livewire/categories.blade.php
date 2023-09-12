@@ -28,8 +28,8 @@
                                     
                                
                                 <tr>
-                                    <td class="text-muted">{{ $category->category_name }}</td>
-                                    <td class="text-muted">
+                                    <td class="text-muted" style="font-size: 14px">{{ $category->category_name }}</td>
+                                    <td class="text-muted" style="font-size: 14px">
                                         {{ $category->subcategories->count() }}
                                     </td>
                                     <td>
@@ -40,7 +40,7 @@
                                     </td>
                                 </tr>
                                 @empty
-                                    <td colspan="3"><span class="text-danger">Tidak ada Menu yang ditemukan.</span></td>
+                                    <td colspan="3"><span class="text-danger">Tidak ada Kategori yang ditemukan.</span></td>
                                 @endforelse
                             </tbody>
                         </table>
@@ -73,21 +73,23 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @forelse ($subcategories as $subcategory)
                                 <tr>
-                                    <td class="text-muted">Any Name</td>
-                                    <td class="text-muted">
-                                        Any Subcategory
-                                    </td>
-                                    <td class="text-muted">
-                                        20
-                                    </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a href="#" class="btn btn-sm btn-primary">Edit</a>&nbsp;
-                                            <a href="#" class="btn btn-sm btn-danger">Hapus</a>
-                                        </div>
-                                    </td>
+                                  <td class="text-muted" style="font-size: 14px">{{ $subcategory->subcategory_name }}</td>
+                                  <td class="text-muted" style="font-size: 14px">
+                                    {{ $subcategory->parentcategory->category_name }}
+                                  </td>
+                                  <td class="text-muted" style="font-size: 14px">4</td>
+                                  <td>
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-sm btn-primary" wire:click.prevent='editSubCategory({{ $subcategory->id }})'>Edit</a> &nbsp;
+                                        <a href="" class="btn btn-sm btn-danger">Hapus</a>
+                                    </div>
+                                  </td>
                                 </tr>
+                                @empty
+                                      <td colspan="4"><span class="text-danger">Tidak ada Subkategori yang ditemukan.</span></td>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -96,7 +98,7 @@
         </div>
     </div>
     
-    <!-- Modal Menu add-->
+    <!-- Modal Kategori -->
     <div wire:ignore.self class="modal modal-blur fade" tabindex="-1" role="dialog" aria-hidden="true" id="categories_modal"
         data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -108,7 +110,7 @@
             @endif
             >
                 <div class="modal-header">
-                    <h5 class="modal-title">{{ $updateCategoryMode ? 'Update Menu' : 'Tambah Menu' }}</h5>
+                    <h5 class="modal-title">{{ $updateCategoryMode ? 'Update Kategori' : 'Tambah Kategori' }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -116,7 +118,7 @@
                         <input type="hidden" wire:model="selected_category_id">
                     @endif
                     <div class="mb-3">
-                        <label class="form-label">Nama Menu</label>
+                        <label class="form-label">Nama Kategori</label>
                         <input type="text" class="form-control @error('category_name') is-invalid @enderror" name="example-text-input" placeholder="Masukkan Nama Menu" wire:model="category_name">
                     @error('category_name')
                         <span class="text-danger">{{ $message }}</span>
@@ -132,40 +134,56 @@
         </div>
     </div>
     
-    <!-- Modal Menu add end-->
+    <!-- Modal Kategori  end-->
     
     
     
-    <!-- Modal Kategory add -->
-    <div class="modal modal-blur fade" tabindex="-1" role="dialog" aria-hidden="true" id="subcategories_modal"
+    <!-- Modal SubKategory add -->
+    <div wire:ignore.self class="modal modal-blur fade" tabindex="-1" role="dialog" aria-hidden="true" id="subcategories_modal"
         data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <form class="modal-content" method="post">
+            <form class="modal-content" method="post"
+            @if($updateSubCategoryMode)
+                 wire:submit.prevent ='updateSubCategory()'
+            @else
+                wire:submit.prevent='addSubCategory()'
+            @endif
+            >
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Kategori</h5>
+                    <h5 class="modal-title">{{ $updateSubCategoryMode ? 'Update SubCategory' : 'Tambah SubCategory' }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    @if($updateSubCategoryMode)
+                        <input type="hidden" wire:model='selected_subcategory_id'>
+                    @endif
                     <div class="mb-3">
-                        <div class="form-label">Parent Menu</div>
+                        <div class="form-label">Parent Category</div>
                         <select class="form-select" wire:model='parent_category'>
+                            @if(!$updateSubCategoryMode)
                               <option value="">No Selected</option>
-                              <option value="">1</option>
-                              <option value="">2</option>
+                            @endif
+                          @foreach (\App\Models\Category::all() as $category)
+                              <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                          @endforeach
                         </select>
+                        <span class="text-danger"> @error('parent_category') {{ $message }} </span> @enderror
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Nama Kategori</label>
-                        <input type="text" class="form-control" name="example-text-input" placeholder="Masukkan Nama Kategori">
+                        <label class="form-label">Nama Subkategori</label>
+                        <input type="text" class="form-control @error('subcategory_name') is-invalid @enderror" name="example-text-input" placeholder="Masukkan nama subkategori" wire:model='subcategory_name'>
+                        @error('subcategory_name')
+                             <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary">{{ $updateSubCategoryMode ? 'Update' : 'Simpan' }}</button>
                 </div>
             </form>
         </div>
     </div>
-    <!-- Modal Kategory add end-->
+    <!-- Modal SubKategory add end-->
 
 </div>

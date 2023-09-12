@@ -14,6 +14,10 @@ class Categories extends Component
     public $selected_category_id;
     public $updateCategoryMode =  false;
 
+    public $subcategory_name;
+    public $parent_category;
+    public $selected_subcategory_id;
+    public $updateSubCategoryMode = false;
 
     public function addCategory()
     {
@@ -72,11 +76,38 @@ class Categories extends Component
         }
     }
 
+    public function addSubCategory(){
+        $this->validate([
+            'parent_category' => 'required',
+            'subcategory_name' => 'required|unique:sub_categories,subcategory_name'
+        ],[
+            'parent_category.required' => 'Parent Kategori harus dipilih',
+            'subcategory_name.required' => 'Nama Subkategori harus diisi',
+            'subcategory_name.unique' => 'Nama Subkategori sudah terdaftar',
+        ]);
+
+        $subcategory = new SubCategory();
+        $subcategory->subcategory_name = $this->subcategory_name;
+        $subcategory->slug = Str::slug($this->subcategory_name);
+        $subcategory->parent_category = $this->parent_category;
+        $saved = $subcategory->save();
+
+        if($saved){
+            $this->dispatchBrowserEvent('success',['message' => 'Subkategori baru telah berhasil ditambahkan']);
+            $this->dispatchBrowserEvent('hideSubCategoriesModal');
+            $this->parent_category = null;
+            $this->subcategory_name = null;
+        }else{
+            $this->dispatchBrowserEvent('error',['message' => 'Something went wrong']);
+        }
+
+    }
 
     public function render()
     {
         return view('livewire.categories',[
             'categories' => Category::orderBy('ordering','ASC')->get(),
+            'subcategories' => SubCategory::orderBy('ordering','asc')->get(),
         ]);
     }
 }

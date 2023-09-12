@@ -16,4 +16,10 @@ class SubCategory extends Model
         'ordering'
     ];
     
+
+    public function parentcategory(){
+        // return $this->hasOne(Category::class,'id', 'parent_category');
+        return $this->belongsTo(Category::class,'parent_category','id');
+    }
+
 }
