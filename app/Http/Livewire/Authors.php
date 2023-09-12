@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Nette\Utils\Random;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\File;
 
 class Authors extends Component
 {
@@ -18,7 +19,8 @@ class Authors extends Component
 
 
     protected $listeners = [
-        'resetForms'
+        'resetForms',
+        'deleteAuthorAction',
     ];
 
 
@@ -84,7 +86,7 @@ class Authors extends Component
 
                 // $this->name = $this->email = $this->username = $this->author_type = $this->direct_publisher = null;
                 $this->name = $this->email = $this->username = $this->author_type =  null;
-                $this->dispatchBrowserEvent('success', ['message' => 'Pengguna baru telah ditambahkan']);
+                $this->dispatchBrowserEvent('success', ['message' => 'Pengguna baru berhasil ditambahkan']);
                 $this->dispatchBrowserEvent('hide_add_author_modal');
 
 
@@ -144,6 +146,32 @@ class Authors extends Component
         $this->dispatchBrowserEvent('success', ['message' => 'Detail pengguna berhasil diperbarui']);
         $this->dispatchBrowserEvent('hide_edit_author_modal');
 
+    }
+
+
+    public function deleteAuthor($author){
+        // dd(['Delete author', $author]);
+        $this->dispatchBrowserEvent('deleteAuthor',[
+            'title' => 'Apakah kamu yakin?',
+            'html' => 'Kamu akan menghapus pengguna ini : <br><b>'.$author['name'].'<b>',
+            'id' => $author['id'],
+        ]);
+    }
+
+    public function deleteAuthorAction($id){
+        // dd('yes delete');
+
+        $author = User::find($id);
+        $path = 'back/dist/img/authors/';
+        $author_picture = $author->getAttributes()['picture'];
+        $picture_full_path = $path.$author_picture;
+
+        if($author_picture != null || File::exists(public_path($picture_full_path))){
+            File::delete(public_path($picture_full_path));
+        }
+
+        $author->delete();
+        $this->dispatchBrowserEvent('success', ['message' => 'Pengguna berhasil dihapus']);
     }
 
     public function isOnline($site = 'https://youtube.com')
