@@ -186,7 +186,7 @@ table, td { color: #000000; } #u_body a { color: #161a39; text-decoration: under
   <tr>
     <td style="padding-right: 0px;padding-left: 0px;" align="center">
       
-      <img align="center" border="0" src="/back/dist/email_template/forgot_password/images/image-1.png" alt="Image" title="reset" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 10%;max-width: 58px;" width="58"/>
+      <img align="center" border="0" src="{{ asset('back/dist/email_template/forgot_password/images/image-1.png') }}" alt="Image" title="reset" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 10%;max-width: 58px;" width="58"/>
       
     </td>
   </tr>
@@ -244,9 +244,9 @@ table, td { color: #000000; } #u_body a { color: #161a39; text-decoration: under
 <p style="font-size: 14px; line-height: 140%;"> </p>
 <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; color: #666666;">Akun anda telah dibuatkan pada website desa. Anda bisa menggunakan akun berikut ini :<br /></span></p>
 <p style="font-size: 14px; line-height: 140%;"> </p>
-<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; color: #666666;">Username: {{ $username }} <br/></span></p>
-<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; color: #666666;">Email : {{ $email }} <br/></span></p>
-<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; color: #666666;">Password : {{ $password }} <br/></span></p>
+<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; color: #666666;"><b>Username : </b> {{ $username }} <br/></span></p>
+<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; color: #666666;"><b>Email :</b> {{ $email }} <br/></span></p>
+<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; color: #666666;"><b>Password : </b> {{ $password }} <br/></span></p>
   </div>
 
       </td>
