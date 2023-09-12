@@ -10,7 +10,10 @@
         <div class="col">
           <!-- Page pre-title -->
           <div class="page-pretitle">
-            Home
+            <ol class="breadcrumb" aria-label="breadcrumbs">
+                <li class="breadcrumb-item"><a href="{{ route('author.home') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="#">example</a></li>
+              </ol>
           </div>
           <h2 class="page-title">
             Dashboard
@@ -18,7 +21,7 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
 
 @endsection
 @section('content')

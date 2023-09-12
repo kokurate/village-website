@@ -1,0 +1,6 @@
+don't forget to keep running this command after updates route
+# php artisan optimize
+
+This commit
+###
+php artisan make:livewire Authors
