@@ -30,3 +30,13 @@
 
 
 @endsection
+
+@push('js')
+    <script>
+
+        window.addEventListener('hideCategoriesModal', function(e){
+            $('#categories_modal').modal('hide');
+        });
+        
+    </script>
+@endpush

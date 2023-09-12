@@ -14,4 +14,8 @@ class Category extends Model
         'ordering',
     ];
     
+    public function subcategories(){
+        return $this->hasMany(SubCategory::class,'parent_category','id');
+    }
+
 }

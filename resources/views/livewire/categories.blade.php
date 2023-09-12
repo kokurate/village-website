@@ -24,10 +24,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @forelse ($categories as $menu)
+                                    
+                               
                                 <tr>
-                                    <td class="text-muted">Any Name</td>
+                                    <td class="text-muted">{{ $menu->category_name }}</td>
                                     <td class="text-muted">
-                                        20
+                                        {{ $menu->subcategories->count() }}
                                     </td>
                                     <td>
                                         <div class="btn-group">
@@ -36,6 +39,9 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @empty
+                                    <td colspan="3"><span class="text-danger">Tidak ada Menu yang ditemukan.</span></td>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -91,24 +97,36 @@
     </div>
     
     <!-- Modal Menu add-->
-    <div class="modal modal-blur fade" tabindex="-1" role="dialog" aria-hidden="true" id="categories_modal"
+    <div wire:ignore.self class="modal modal-blur fade" tabindex="-1" role="dialog" aria-hidden="true" id="categories_modal"
         data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <form class="modal-content" method="post">
+            <form class="modal-content" method="post"
+            @if($updateCategoryMode)
+                wire:submit.prevent='updateCategory()'
+            @else
+                wire:submit.prevent='addCategory'
+            @endif
+            >
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Menu</h5>
+                    <h5 class="modal-title">{{ $updateCategoryMode ? 'Update Menu' : 'Tambah Menu' }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    @if($updateCategoryMode)
+                        <input type="hidden" wire:model="selected_category_id">
+                    @endif
                     <div class="mb-3">
                         <label class="form-label">Nama Menu</label>
-                        <input type="text" class="form-control" name="example-text-input" placeholder="Masukkan Nama Menu">
+                        <input type="text" class="form-control @error('category_name') is-invalid @enderror" name="example-text-input" placeholder="Masukkan Nama Menu" wire:model="category_name">
+                    @error('category_name')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     </div>
                 </div>
     
                 <div class="modal-footer">
                     <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Simpan</button>
+                    <button type="submit" class="btn btn-primary">{{ $updateCategoryMode ? 'Update' : 'Simpan'}}</button>
                 </div>
             </form>
         </div>
@@ -143,7 +161,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Simpan</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
         </div>
