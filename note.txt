@@ -4,3 +4,10 @@ don't forget to keep running this command after updates route
 This commit
 ###
 php artisan make:livewire Authors
+
+php artisan make:livewire Categories
+php artisan make:model Category -m
+php artisan make:model SubCategory -m
+
+setup the migration then run
+php artisan migrate
