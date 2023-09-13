@@ -26,7 +26,7 @@
 @endsection
 @section('content')
 
-<form action="" method="post" id="addPostForm">
+<form action="{{ route('author.posts.create') }}" method="post" id="addPostForm" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-md-9 my-3">
@@ -85,7 +85,7 @@
                     </div>
                     <div class="mb-3">
                         <div class="form-label">Featured Image</div>
-                        <input type="file" class="form-control" name="feature_image">
+                        <input type="file" class="form-control" name="feature_image" id="image-input">
                     </div>
                     <div class="image_holder mb-2" style="max-width: 250px">
                         <img src="" alt="" class="img-thumbnail" id="image-previewer">
@@ -99,3 +99,55 @@
 </form>
 
 @endsection
+
+@push('js')
+    <script>
+
+        // start Image Preview and validation
+        $(function () {
+            // Get references to the file input and image element
+            var fileInput = document.getElementById('image-input');
+            var imagePreview = document.getElementById('image-previewer');
+            // Add an event listener to the file input
+            fileInput.addEventListener('change', function () {
+                // Check if a file is selected
+                if (fileInput.files && fileInput.files[0]) {
+                   
+                    // Check allowed extensions
+                    var allowedExtensions = ['jpg', 'jpeg', 'png'];
+                    var fileExtension = fileInput.files[0].name.split('.').pop().toLowerCase();
+                    var isAllowedExtension = allowedExtensions.indexOf(fileExtension) !== -1;
+                    if (!isAllowedExtension) {
+                        alert('Ekstensi gambar yang diperbolehkan: jpg, jpeg, png');
+                        // Clear the file input to prevent submission
+                        fileInput.value = '';
+                    } else {
+                        // Check image shape (assuming you have specific dimensions for rectangular images)
+                        var image = new Image();
+                        image.src = window.URL.createObjectURL(fileInput.files[0]);
+                        image.onload = function () {
+                            var width = this.width;
+                            var height = this.height;
+                            // Define your rectangular shape criteria here
+                            var isRectangular = width > height;
+                            if (!isRectangular) {
+                                alert('Bentuk gambar harus landscape');
+                                // Clear the file input to prevent submission
+                                fileInput.value = '';
+                            }
+
+                            //preview the image if there's not error validation
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                // Update the image preview
+                                imagePreview.src = e.target.result;
+                            };
+                            reader.readAsDataURL(fileInput.files[0]);
+                        };
+                    }
+                }
+            });
+        });
+        // End Image Preview and validation
+    </script>
+@endpush
