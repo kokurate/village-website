@@ -69,6 +69,7 @@
                         <label class="form-label">Kategori</label>
                         <div>
                           <select class="form-select" name="post_category">
+                            <option value="">Pilih Kategori</option>
                             @foreach(\App\Models\Category::with('subcategories')->get() as $category)
                                 <optgroup label="{{ $category->category_name }}">
                                     @foreach($category->subcategories as $subcategory)

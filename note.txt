@@ -11,3 +11,6 @@ php artisan make:model SubCategory -m
 
 setup the migration then run
 php artisan migrate
+
+php artisan make:model Post -m
+php artisan migrate
