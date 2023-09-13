@@ -21,3 +21,9 @@ php artisan storage:link
 //install sluggable
 composer require cviebrock/eloquent-sluggable
 php artisan vendor:publish --provider="Cviebrock\EloquentSluggable\ServiceProvider"
+
+Installing laravel elfinder
+composer require barryvdh/laravel-elfinder
+php artisan elfinder:publish
+php artisan vendor:publish --provider='Barryvdh\Elfinder\ElfinderServiceProvider' --tag=config
+php artisan vendor:publish --provider='Barryvdh\Elfinder\ElfinderServiceProvider' --tag=views
