@@ -18,3 +18,7 @@ php artisan make:model Post -m
 php artisan migrate
 
 php artisan storage:link
+
+// install sluggable
+composer require cviebrock/eloquent-sluggable
+php artisan vendor:publish --provider="Cviebrock\EloquentSluggable\ServiceProvider"

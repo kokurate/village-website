@@ -52,7 +52,7 @@ class AuthorAddPost extends Component
                 $post->author_id = auth()->id();
                 $post->category_id = $this->post_category;
                 $post->post_title = $this->post_title;
-                $post->post_slug = Str::slug($this->post_title);
+                // $post->post_slug = Str::slug($this->post_title);
                 $post->post_content = $this->post_content;
                 $post->featured_image = $new_filename;
                 $saved = $post->save();

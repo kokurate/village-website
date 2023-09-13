@@ -79,7 +79,7 @@
                                   <td class="text-muted" style="font-size: 14px">
                                         {{ $subcategory->parentcategory->category_name ?? 'Uncategorized'}}
                                   </td>
-                                  <td class="text-muted" style="font-size: 14px">4</td>
+                                  <td class="text-muted" style="font-size: 14px">{{ $subcategory->posts->count() }}</td>
                                   <td>
                                     <div class="btn-group">
                                         <a href="#" class="btn btn-sm btn-primary" wire:click.prevent='editSubCategory({{ $subcategory->id }})'>Edit</a> &nbsp;
