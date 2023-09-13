@@ -27,3 +27,6 @@ composer require barryvdh/laravel-elfinder
 php artisan elfinder:publish
 php artisan vendor:publish --provider='Barryvdh\Elfinder\ElfinderServiceProvider' --tag=config
 php artisan vendor:publish --provider='Barryvdh\Elfinder\ElfinderServiceProvider' --tag=views
+
+php artisan optimize
+php artisan make:middleware UserUniqueFilesFolder
