@@ -29,3 +29,10 @@
 @livewire('author-add-post')
 
 @endsection
+@push('js')
+    < <!-- CK Editor -->
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script>
+    </script>
+
+@endpush

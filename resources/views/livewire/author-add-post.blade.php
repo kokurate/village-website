@@ -23,7 +23,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Content</label>
-                            <textarea class="form-control @error('post_content') is-invalid @enderror" name="post_content" rows="8" placeholder="Content.." wire:model='post_content'></textarea>
+                            <textarea class="ckeditor form-control @error('post_content') is-invalid @enderror" name="post_content" rows="8" placeholder="Content.." wire:model='post_content'></textarea>
                             @error('post_content') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                     </div>
