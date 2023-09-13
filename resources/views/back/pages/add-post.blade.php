@@ -49,7 +49,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Content</label>
-                        <textarea class="form-control @error('post_content') is-invalid @enderror" name="post_content" rows="8" placeholder="Content.."></textarea>
+                        <textarea class="ckeditor form-control @error('post_content') is-invalid @enderror" name="post_content" id="post_content" rows="8" placeholder="Content.."></textarea>
                         <span class="text-danger error-text post_content_error"></span>
                     </div>
                 </div>
@@ -105,6 +105,13 @@
 @endsection
 
 @push('js')
+
+
+  <!-- CK Editor -->
+  <script src="/ckeditor/ckeditor.js"></script>
+
+
+
     <script>
 
         // start Image Preview and validation
@@ -158,9 +165,11 @@
         // form submit
         $('form#addPostForm').on('submit', function(e){
             e.preventDefault();
-            toastr.remove();
+            toastr.remove(); 
+            var post_content = CKEDITOR.instances.post_content.getData();
             var form = this;
             var fromdata = new FormData(form);
+                fromdata.append('post_content', post_content);
             $.ajax({
                 url:$(form).attr('action'),
                 method:$(form).attr('method'),
@@ -176,6 +185,7 @@
                     if(response.code == 1){
                         $(form)[0].reset();
                         $('div.image_holder').html('');
+                        CKEDITOR.instances.post_content.setData('');
                         toastr.success(response.msg);
                     }else{
                         toastr.error(response.msg);
