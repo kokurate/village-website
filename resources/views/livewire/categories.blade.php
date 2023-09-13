@@ -77,7 +77,7 @@
                                 <tr>
                                   <td class="text-muted" style="font-size: 14px">{{ $subcategory->subcategory_name }}</td>
                                   <td class="text-muted" style="font-size: 14px">
-                                    {{ $subcategory->parentcategory->category_name }}
+                                        {{ $subcategory->parentcategory->category_name ?? 'Uncategorized'}}
                                   </td>
                                   <td class="text-muted" style="font-size: 14px">4</td>
                                   <td>
