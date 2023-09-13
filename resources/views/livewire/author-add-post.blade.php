@@ -1,6 +1,6 @@
 <div>
     
-    <form wire:submit.prevent='addPost()' action="" method="post" id="addPostForm">
+    <form wire:submit.prevent='addPost()' action="" method="post" id="addPostForm" enctype="multipart/form-data">
         {{-- @csrf --}}
         <div class="row">
             <div class="col-md-9 my-3">
@@ -62,7 +62,7 @@
                         </div>
                         <div class="mb-3">
                             <div class="form-label">Featured Image</div>
-                            <input type="file" class="form-control" name="feature_image" wire:model='feature_image'>
+                            <input type="file" class="form-control" id="feature_image" name="feature_image" wire:model='feature_image'>
                             @error('feature_image') <span class="text-danger">{{ $message }}</span>@enderror
 
                         </div>
