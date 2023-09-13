@@ -18,12 +18,12 @@
                         </h3> --}}
                         <div class="mb-3">
                             <label class="form-label">Judul Post</label>
-                            <input type="text" class="form-control" name="post_title" placeholder="Masukkan judul..." wire:model='post_title'>
+                            <input type="text" class="form-control @error('post_title') is-invalid @enderror" name="post_title" placeholder="Masukkan judul..." wire:model='post_title'>
                             @error('post_title') <span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Content</label>
-                            <textarea class="form-control" name="post_content" rows="8" placeholder="Content.." wire:model='post_content'></textarea>
+                            <textarea class="form-control @error('post_content') is-invalid @enderror" name="post_content" rows="8" placeholder="Content.." wire:model='post_content'></textarea>
                             @error('post_content') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                         <div class="mb-3">
                             <label class="form-label">Kategori</label>
                             <div>
-                              <select class="form-select" name="post_category" wire:model='post_category'>
+                              <select class="form-select @error('post_category') is-invalid @enderror" name="post_category" wire:model='post_category'>
                                 <option value="">Pilih Kategori</option>
                                 @foreach(\App\Models\Category::with('subcategories')->get() as $category)
                                     <optgroup label="{{ $category->category_name }}">

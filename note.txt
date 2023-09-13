@@ -13,3 +13,6 @@ setup the migration then run
 php artisan migrate
 
 php artisan make:livewire AuthorAddPost
+
+php artisan make:model Post -m
+php artisan migrate
