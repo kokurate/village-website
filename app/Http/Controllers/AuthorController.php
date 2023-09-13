@@ -88,7 +88,7 @@ class AuthorController extends Controller
                 $post->author_id = auth()->id();
                 $post->category_id = $request->post_category;
                 $post->post_title = $request->post_title;
-                $post->post_slug = Str::slug($request->post_title);
+                // $post->post_slug = Str::slug($request->post_title);
                 $post->post_content = $request->post_content;
                 $post->featured_image = $new_filename;
                 $saved = $post->save();
