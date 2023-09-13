@@ -44,11 +44,13 @@
                     </h3> --}}
                     <div class="mb-3">
                         <label class="form-label">Judul Post</label>
-                        <input type="text" class="form-control" name="post_title" placeholder="Masukkan judul...">
+                        <input type="text" class="form-control @error('post_title') is-invalid @enderror" name="post_title" placeholder="Masukkan judul...">
+                        <span class="text-danger error-text post_title_error"></span>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Content</label>
-                        <textarea class="form-control" name="post_content" rows="8" placeholder="Content.."></textarea>
+                        <textarea class="form-control @error('post_content') is-invalid @enderror" name="post_content" rows="8" placeholder="Content.."></textarea>
+                        <span class="text-danger error-text post_content_error"></span>
                     </div>
                 </div>
             </div>
@@ -68,7 +70,7 @@
                     <div class="mb-3">
                         <label class="form-label">Kategori</label>
                         <div>
-                          <select class="form-select" name="post_category">
+                          <select class="form-select @error('post_category') is-invalid @enderror" name="post_category">
                             <option value="">Pilih Kategori</option>
                             @foreach(\App\Models\Category::with('subcategories')->get() as $category)
                                 <optgroup label="{{ $category->category_name }}">
@@ -81,11 +83,13 @@
                                 <option value="{{ $uncategorized->id }}">{{ $uncategorized->subcategory_name }}</option>
                             @endforeach
                           </select>
+                          <span class="text-danger error-text post_category_error"></span>
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="form-label">Featured Image</div>
-                        <input type="file" class="form-control" name="feature_image" id="image-input">
+                        <input type="file" class="form-control" name="featured_image" id="image-input">
+                        <span class="text-danger error-text featured_image_error"></span>
                     </div>
                     <div class="image_holder mb-2" style="max-width: 250px">
                         <img src="" alt="" class="img-thumbnail" id="image-previewer">
@@ -149,5 +153,42 @@
             });
         });
         // End Image Preview and validation
+
+
+        // form submit
+        $('form#addPostForm').on('submit', function(e){
+            e.preventDefault();
+            toastr.remove();
+            var form = this;
+            var fromdata = new FormData(form);
+            $.ajax({
+                url:$(form).attr('action'),
+                method:$(form).attr('method'),
+                data:fromdata,
+                processData:false,
+                dataType :'json',
+                contentType:false,
+                beforeSend:function(){
+                    $(form).find('span.error-text').text('');
+                },
+                success:function(response){
+                    toastr.remove();
+                    if(response.code == 1){
+                        $(form)[0].reset();
+                        $('div.image_holder').html('');
+                        toastr.success(response.msg);
+                    }else{
+                        toastr.error(response.msg);
+                    }
+                },
+                error:function(response){
+                    toastr.remove();
+                    $.each(response.responseJSON.errors, function(prefix,val){
+                        $(form).find('span.'+prefix+'_error').text(val[0]);
+                    });
+                }
+            });
+        });
+
     </script>
 @endpush
