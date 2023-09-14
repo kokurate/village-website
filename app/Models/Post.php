@@ -37,4 +37,11 @@ class Post extends Model
         return $this->belongsTo(User::class,'author_id','id');
     }
 
+    public function scopeSearch($query,$term){
+        $term = "%$term%";
+        $query->where(function($query) use ($term){
+            $query->where('post_title','like', $term);
+        });
+    }
+
 }

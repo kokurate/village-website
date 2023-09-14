@@ -129,6 +129,7 @@
                 </div>
               </div>
             </li>
+            @if(auth()->user()->type == 1)
             <li class="nav-item">
               <a class="nav-link" href="{{ route('author.categories') }}" >
                 <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
@@ -148,7 +149,6 @@
               </a>
             </li>     
             
-            @if(auth()->user()->type == 1)
             
             <li class="nav-item">
               <a class="nav-link" href="{{ route('author.authors') }}" >
