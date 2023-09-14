@@ -26,7 +26,8 @@
 @endsection
 @section('content')
 
-<form action="{{ route('author.posts.create') }}" method="post" id="addPostForm" enctype="multipart/form-data">
+{{-- <form action="{{ route('author.posts.update-post', ['post_slug' => Request('post_slug')]) }}" method="post" id="editPostForm" enctype="multipart/form-data"> --}}
+<form action="{{ route('author.posts.update-post', ['post_id' => Request('post_id')]) }}" method="post" id="editPostForm" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-md-9 my-3">
@@ -44,13 +45,14 @@
                     </h3> --}}
                     <div class="mb-3">
                         <label class="form-label">Judul Post</label>
-                        <input type="text" class="form-control @error('post_title') is-invalid @enderror" name="post_title" placeholder="Masukkan judul...">
+                        <input type="text" class="form-control @error('post_title') is-invalid @enderror" name="post_title" placeholder="Masukkan judul..." value="{{ $post->post_title }}">
                         <span class="text-danger error-text post_title_error"></span>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Content</label>
-                        <textarea class="ckeditor form-control @error('post_content') is-invalid @enderror" name="post_content" id="post_content" rows="8" placeholder="Content.."></textarea>
                         <span class="text-danger error-text post_content_error"></span>
+                        <label class="form-label">Content</label>
+                        <textarea class="ckeditor form-control @error('post_content') is-invalid @enderror" name="post_content" id="post_content" rows="8" placeholder="Content..">{!! $post->post_content !!}</textarea>
+                        
                     </div>
                 </div>
             </div>
@@ -75,12 +77,12 @@
                             @foreach(\App\Models\Category::with('subcategories')->get() as $category)
                                 <optgroup label="{{ $category->category_name }}">
                                     @foreach($category->subcategories as $subcategory)
-                                        <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}</option>
+                                        <option value="{{ $subcategory->id }}" {{ $post->category_id == $subcategory->id ? 'selected' : '' }}>{{ $subcategory->subcategory_name }}</option>
                                     @endforeach
                                 </optgroup>
                             @endforeach
                             @foreach(\App\Models\SubCategory::where('parent_category', 0)->get() as $uncategorized)
-                                <option value="{{ $uncategorized->id }}">{{ $uncategorized->subcategory_name }}</option>
+                                <option value="{{ $uncategorized->id }}" {{ $post->category_id == $uncategorized->id ? 'selected' : '' }}>{{ $uncategorized->subcategory_name }}</option>
                             @endforeach
                           </select>
                           <span class="text-danger error-text post_category_error"></span>
@@ -92,9 +94,9 @@
                         <span class="text-danger error-text featured_image_error"></span>
                     </div>
                     <div class="image_holder mb-2" style="max-width: 250px">
-                        <img src="" alt="" class="img-thumbnail" id="image-previewer">
+                        <img src="{{ $post->featured_image ? asset('storage/images/post_images/' . $post->featured_image) : '' }}" alt="" class="img-thumbnail" id="image-previewer">
                     </div>
-                    <button type="submit" class="btn btn-primary">Simpan Post</button>
+                    <button type="submit" class="btn btn-primary">Perbarui Post</button>
                 </div>
             </div>
         </div>
@@ -163,42 +165,50 @@
 
 
         // form submit
-        $('form#addPostForm').on('submit', function(e){
-            e.preventDefault();
-            toastr.remove(); 
-            var post_content = CKEDITOR.instances.post_content.getData();
-            var form = this;
-            var fromdata = new FormData(form);
-                fromdata.append('post_content', post_content);
-            $.ajax({
-                url:$(form).attr('action'),
-                method:$(form).attr('method'),
-                data:fromdata,
-                processData:false,
-                dataType :'json',
-                contentType:false,
-                beforeSend:function(){
-                    $(form).find('span.error-text').text('');
-                },
-                success:function(response){
-                    toastr.remove();
-                    if(response.code == 1){
-                        $(form)[0].reset();
-                        $('div.image_holder').html('');
-                        CKEDITOR.instances.post_content.setData('');
-                        toastr.success(response.msg);
-                    }else{
-                        toastr.error(response.msg);
-                    }
-                },
-                error:function(response){
-                    toastr.remove();
-                    $.each(response.responseJSON.errors, function(prefix,val){
-                        $(form).find('span.'+prefix+'_error').text(val[0]);
-                    });
+        $('form#editPostForm').on('submit', function(e){
+        e.preventDefault();
+        toastr.remove(); 
+        var post_content = CKEDITOR.instances.post_content.getData();
+        var form = this;
+        var fromdata = new FormData(form);
+            fromdata.append('post_content', post_content);
+        $.ajax({
+            url:$(form).attr('action'),
+            method:$(form).attr('method'),
+            data:fromdata,
+            processData:false,
+            dataType :'json',
+            contentType:false,
+            beforeSend:function(){
+                $(form).find('span.error-text').text('');
+            },
+            success:function(response){
+                toastr.remove();
+                if(response.code == 1){
+                    $(form)[0].reset();
+                    $('div.image_holder').html('');
+                    // CKEDITOR.instances.post_content.setData('';)
+                    // $('div.image_holder').find('img').attr('src','');
+                    // CKEDITOR.instances.post_content.setData('');
+                    // Add a delay of 2 seconds before redirecting
+                    setTimeout(function () {
+                    // Redirect back to the previous page
+                    var currentURL = window.location.href;
+                    window.location.href = currentURL;
+                    }, 1000);
+                    
+                    toastr.success(response.msg);
+                }else{
+                    toastr.error(response.msg);
                 }
-            });
+            },
+            error:function(response){
+                toastr.remove();
+                $.each(response.responseJSON.errors, function(prefix,val){
+                    $(form).find('span.'+prefix+'_error').text(val[0]);
+                });
+            }
         });
-
+    });
     </script>
 @endpush

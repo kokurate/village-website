@@ -117,7 +117,8 @@
                                     <div class="mt-3 badges">
                                         {{-- <a href="#" class="badge badge-outline text-muted border fw-normal badge-pill">Edit</a> --}}
                                         {{-- <a href="#" class="badge badge-outline text-muted border fw-normal badge-pill">Hapus</a> --}}
-                                        <button class="btn position-relative">Edit <span class="badge bg-cyan badge-notification badge-blink"></span></button>
+                                        <a class="btn position-relative" href="{{ route('author.posts.edit-post',['post_id' => $post->id]) }}">Edit <span class="badge bg-cyan badge-notification badge-blink"></span></a>
+                                        {{-- <a class="btn position-relative" href="{{ route('author.posts.edit-post',['post_slug' => $post->post_slug]) }}">Edit <span class="badge bg-cyan badge-notification badge-blink"></span></a> --}}
                                         <button class="btn position-relative"><span class="badge bg-red badge-notification badge-blink"></span>Hapus </button>
                                     </div>
                                 </div>
