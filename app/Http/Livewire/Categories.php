@@ -23,6 +23,7 @@ class Categories extends Component
     protected $listeners = [
         'resetModalForm',
         'deleteCategoryAction',
+        'deleteSubCategoryAction',
     ];
 
     public function resetModalForm(){
@@ -180,6 +181,31 @@ class Categories extends Component
             SubCategory::where('parent_category', $category->id)->delete();
             $category->delete();
             $this->dispatchBrowserEvent('info',['message' => 'Kategori telah berhasil dihapus.']);
+
+        }
+    }
+
+
+    public function deleteSubCategory($id){
+        $subcategory = SubCategory::find($id);
+        $this->dispatchBrowserEvent('deleteSubCategory',[
+            'title' => 'Apakah Kamu Yakin ?',
+            'html' => 'Kamu akan menghapus subkategori <b>'.$subcategory->subcategory_name.'</b>',
+            'id' => $id
+        ]);
+    }
+
+    public function deleteSubCategoryAction($id){
+        // dd('yes delete now');
+        $subcategory = SubCategory::where('id',$id)->first();
+        $posts = Post::where('category_id', $subcategory->id)->get()->toArray();
+
+        if(!empty($posts) && count($posts) > 0){
+            $this->dispatchBrowserEvent('error',['message' => 'Subkategori ini tidak dapat dihapus karena memiliki  ('.count($posts).') posting terkait.']);
+
+        }else{
+            $subcategory->delete();
+            $this->dispatchBrowserEvent('info',['message' => 'Subkategori telah berhasil dihapus.']);
 
         }
     }

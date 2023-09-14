@@ -85,7 +85,7 @@
                                   <td>
                                     <div class="btn-group">
                                         <a href="#" class="btn btn-sm btn-primary" wire:click.prevent='editSubCategory({{ $subcategory->id }})'>Edit</a> &nbsp;
-                                        <a href="" class="btn btn-sm btn-danger">Hapus</a>
+                                        <a href="" class="btn btn-sm btn-danger" wire:click.prevent='deleteSubCategory({{ $subcategory->id }})' >Hapus</a>
                                     </div>
                                   </td>
                                 </tr>
