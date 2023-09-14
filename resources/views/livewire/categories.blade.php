@@ -35,7 +35,7 @@
                                     <td>
                                         <div class="btn-group">
                                             <a href="#" class="btn btn-sm btn-primary" wire:click.prevent='editCategory({{ $category->id }})'>Edit</a>&nbsp;
-                                            <a href="#" class="btn btn-sm btn-danger">Hapus</a>
+                                            <a href="#" class="btn btn-sm btn-danger" wire:click.prevent='deleteCategory({{ $category->id }})'>Hapus</a>
                                         </div>
                                     </td>
                                 </tr>

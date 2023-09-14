@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\SubCategory;
 use Illuminate\Support\Str;
 
@@ -20,7 +21,8 @@ class Categories extends Component
     public $updateSubCategoryMode = false;
 
     protected $listeners = [
-        'resetModalForm'
+        'resetModalForm',
+        'deleteCategoryAction',
     ];
 
     public function resetModalForm(){
@@ -154,6 +156,33 @@ class Categories extends Component
         }
     }
 
+
+    public function deleteCategory($id){
+        $category = Category::find($id);
+        $this->dispatchBrowserEvent('deleteCategory',[
+            'title' => 'Apakah Kamu Yakin?',
+            'html' => 'Kamu akan menghapus kategori <b>'.$category->category_name.'</b>',
+            'id' => $id
+        ]);
+    }
+
+    public function deleteCategoryAction($id){
+        $category = Category::where('id', $id)->first();
+        $subcategories = SubCategory::where('parent_category', $category->id)->whereHas('posts')->with('posts')->get();
+
+        if(!empty($subcategories) && count($subcategories) > 0){
+            $totalPosts = 0;
+            foreach($subcategories as $subcat){
+                $totalPosts += Post::where('category_id', $subcat->id)->get()->count();
+            }    
+            $this->dispatchBrowserEvent('error',['message' => 'Kategori ini tidak dapat dihapus karena memiliki ('.$totalPosts.') posting terkait.']);
+        }else{
+            SubCategory::where('parent_category', $category->id)->delete();
+            $category->delete();
+            $this->dispatchBrowserEvent('info',['message' => 'Kategori telah berhasil dihapus.']);
+
+        }
+    }
 
     public function render()
     {
