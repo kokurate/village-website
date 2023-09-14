@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Post;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Storage;
 
 class AllPosts extends Component
 {
@@ -14,6 +15,11 @@ class AllPosts extends Component
     public $author = null;
     public $category = null;
     public $orderBy ='desc';
+
+    protected $listeners = [
+        'deletePostAction'
+    ];
+
 
     public function mount(){
         $this->resetPage();
@@ -32,6 +38,34 @@ class AllPosts extends Component
     }
 
 
+    public function deletePost($id){
+        $this->dispatchBrowserEvent('deletePost',[
+            'title' => 'Apakah Kamu Yakin?',
+            'html' => 'Kamu akan menghapus post ini.',
+            'id' => $id,
+        ]);
+    }
+
+    public function deletePostAction($id){
+        // dd('Yes Delete Now');
+        $post = Post::find($id);
+        $path = "images/post_images/";
+        $featured_image = $post->featured_image;
+
+        if($featured_image != null  && Storage::disk('public')->exists($path.$featured_image)){
+
+            // delete post featured image
+            Storage::disk('public')->delete($path.$featured_image);
+        }
+
+        $delete_post = $post->delete();
+
+        if($delete_post){
+            $this->dispatchBrowserEvent('success', ['message' => 'Post telah berhasil dihapus']);
+        }else{
+            $this->dispatchBrowserEvent('error', ['message' => 'Something went wrong']);
+        }
+    }
 
     public function render()
     {

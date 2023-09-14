@@ -29,3 +29,29 @@
 @livewire('all-posts')
 
 @endsection
+
+@push('js')
+
+  <script>
+     window.addEventListener('deletePost', function(event) {
+        Swal.fire({
+            title: event.detail.title,
+            html: event.detail.html,
+            icon: 'warning', // Use a warning icon
+            showCloseButton: true,
+            showCancelButton: true,
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Hapus',
+            cancelButtonColor: '#d33',
+            confirmButtonColor: '#3085d6',
+            width: '400px',
+            allowOutsideClick: false,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Livewire.emit('deletePostAction', event.detail.id);
+            }
+        });
+    });
+  </script>
+
+@endpush

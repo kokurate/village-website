@@ -43,6 +43,7 @@
             </div>
             <div class="col-md-9">
               <div class="row g-2 align-items-center">
+              {{-- <div class="row g-2 align-items-center sticky-top" style="background-color: white;"> --}}
                 <!-- Page title actions -->
                 <div class="col ms-auto d-print-none mb-4">
                   <label for="" class="form-label">Search</label>
@@ -119,7 +120,7 @@
                                         {{-- <a href="#" class="badge badge-outline text-muted border fw-normal badge-pill">Hapus</a> --}}
                                         <a class="btn position-relative" href="{{ route('author.posts.edit-post',['post_id' => $post->id]) }}">Edit <span class="badge bg-cyan badge-notification badge-blink"></span></a>
                                         {{-- <a class="btn position-relative" href="{{ route('author.posts.edit-post',['post_slug' => $post->post_slug]) }}">Edit <span class="badge bg-cyan badge-notification badge-blink"></span></a> --}}
-                                        <button class="btn position-relative"><span class="badge bg-red badge-notification badge-blink"></span>Hapus </button>
+                                        <a class="btn position-relative" wire:click.prevent='deletePost({{ $post->id }})' ><span class="badge bg-red badge-notification badge-blink"></span>Hapus </a>
                                     </div>
                                 </div>
                             </div>
