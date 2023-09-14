@@ -77,9 +77,8 @@
                                 <tr>
                                   <td class="text-muted" style="font-size: 14px">{{ $subcategory->subcategory_name }}</td>
                                   <td class="text-muted" style="font-size: 14px">
-                                    {{ $subcategory->parentcategory->category_name ?? '
-                                    Tidak dikategorikan
-                                    '}}
+                                    {{ $subcategory->parentcategory->category_name ?? '-'}}
+                                    {{-- {{ $subcategory->parent_category != 0 ? $subcategory->parentcategory->category_name : ' - '}} --}}
                                   </td>
                                   <td class="text-muted" style="font-size: 14px">{{ $subcategory->posts->count() }}</td>
                                   <td>
@@ -148,7 +147,7 @@
             @if($updateSubCategoryMode)
                  wire:submit.prevent ='updateSubCategory()'
             @else
-                wire:submit.prevent='addSubCategory()'
+                wire:submit.prevent='addSubCategory'
             @endif
             >
                 <div class="modal-header">
@@ -162,9 +161,9 @@
                     <div class="mb-3">
                         <div class="form-label">Parent Category</div>
                         <select class="form-select" wire:model='parent_category'>
-                            @if(!$updateSubCategoryMode)
-                              <option value="">No Selected</option>
-                            @endif
+                            {{-- @if(!$updateSubCategoryMode) --}}
+                              <option value="0">Tidak Dikategorikan</option>
+                            {{-- @endif --}}
                           @foreach (\App\Models\Category::all() as $category)
                               <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                           @endforeach
