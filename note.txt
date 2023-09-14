@@ -30,3 +30,5 @@ php artisan vendor:publish --provider='Barryvdh\Elfinder\ElfinderServiceProvider
 
 php artisan optimize
 php artisan make:middleware UserUniqueFilesFolder
+
+php artisan make:livewire AllPosts

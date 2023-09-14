@@ -122,7 +122,7 @@
                     <a class="dropdown-item" href="{{ route('author.posts.add-post') }}">
                       Post Baru
                     </a>
-                    <a class="dropdown-item" href="/back/buttons.html">
+                    <a class="dropdown-item" href="{{ route('author.posts.all_posts') }}">
                       Semua Post
                     </a>
                  
