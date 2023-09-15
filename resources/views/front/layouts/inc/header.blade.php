@@ -58,28 +58,32 @@
            <div class="header-bottom header-sticky">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="col-xl-10 col-lg-10 col-md-12 header-flex">
+                        <div class="col-xl-12 col-lg-12 col-md-12 header-flex">
                             <!-- sticky -->
                                 <div class="sticky-logo">
                                     <a href="index.html"><img src="/front/assets/img/logo/logo.png" alt=""></a>
                                 </div>
                             <!-- Main-menu -->
-                            <div class="main-menu d-none d-md-block">
+                            <div class="main-menu d-none d-md-block my-main-menu">
                                 <nav>                  
                                     <ul id="navigation">    
                                         <li><a href="index.html">Home</a></li>
                                         <li><a href="categori.html">Category</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="latest_news.html">Latest News</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                        <li><a href="#">Pages</a>
+                                        @foreach(\App\Models\Category::whereHas('subcategories', function($q){
+                                            $q->whereHas('posts');
+                                          })->get() as $category)
+                                        <li><a href="#">{{ $category->category_name }}</a>
                                             <ul class="submenu">
-                                                <li><a href="elements.html">Element</a></li>
-                                                <li><a href="blog.html">Blog</a></li>
-                                                <li><a href="single-blog.html">Blog Details</a></li>
-                                                <li><a href="details.html">Categori Details</a></li>
+                                                @foreach(\App\Models\SubCategory::where('parent_category', $category->id)->whereHas('posts')->get() as $subcategory)
+                                                    <li><a href="elements.html">{{ $subcategory->subcategory_name }}</a></li>
+                                                @endforeach
                                             </ul>
                                         </li>
+                                        @endforeach
+                                        @foreach(\App\Models\SubCategory::where('parent_category', 0)->whereHas('posts')->get() as $subcategory)
+                                            <li><a href="contact.html">{{ $subcategory->subcategory_name }}</a></li>
+                                        @endforeach
+                                        <li><a href="contact.html">Contact</a></li>
                                     </ul>
                                 </nav>
                             </div>

@@ -10,6 +10,7 @@
 		<link rel="shortcut icon" type="image/x-icon" href="/front/assets/img/favicon.ico">
 
 		<!-- CSS here -->
+        <link rel="stylesheet" href="/front/mycss.css">
             <link rel="stylesheet" href="/front/assets/css/bootstrap.min.css">
             <link rel="stylesheet" href="/front/assets/css/owl.carousel.min.css">
             <link rel="stylesheet" href="/front/assets/css/ticker-style.css">
@@ -21,7 +22,7 @@
             <link rel="stylesheet" href="/front/assets/css/themify-icons.css">
             <link rel="stylesheet" href="/front/assets/css/slick.css">
             <link rel="stylesheet" href="/front/assets/css/nice-select.css">
-            <link rel="stylesheet" href="/front/assets/css/style.css">
+            <link rel="stylesheet" href="/front/assets/css/style.css">      
             @stack('css')
    </head>
 
