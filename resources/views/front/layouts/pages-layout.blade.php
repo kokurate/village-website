@@ -98,7 +98,7 @@
     <!-- Top News Start-->
     <div class="top-news">
         <div class="container">
-            <div class="row">
+            <div class="row mb-0">
                 <div class="col-md-8 tn-left">
                     <div class="row tn-slider">
                         <div class="col-md-6">
@@ -159,20 +159,8 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="sn-container">
-                        <div class="sn-img">
-                            <img src="/front/img/news-825x525.jpg">
-                        </div>
                         <div class="sn-content">
-                            <h1 class="sn-title">Lorem ipsum dolor sit amet</h1>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer molestie, lorem eu
-                                eleifend bibendum, augue purus mollis sapien, non rhoncus eros leo in nunc. Donec a
-                                nulla vel turpis consectetur tempor ac vel justo. In hac habitasse platea dictumst. Cras
-                                nec sollicitudin eros. Nunc eu enim non turpis sagittis rhoncus consectetur id augue.
-                                Mauris dignissim neque felis. Phasellus mollis mi a pharetra cursus. Maecenas vulputate
-                                augue placerat lacus mattis, nec ornare risus sollicitudin.
-                            </p>
-                           
+                            @yield('content')
                         </div>
                     </div>
                   
@@ -180,7 +168,7 @@
                 <div class="col-lg-4">
                     <div class="sidebar">
                         <div class="sidebar-widget">
-                            <h2 class="sw-title">In This Category</h2>
+                            <h2 class="sw-title">Aparatur Desa</h2>
                             <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
                                     <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>

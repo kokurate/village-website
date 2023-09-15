@@ -16,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('front.layouts.pages-layout');
+    return view('front.pages.home');
 });
 
