@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Post;
+use App\Models\SubCategory;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
@@ -100,6 +101,18 @@ IF(!function_exists('recommended_posts')){
                     ->limit(5)
                     ->inRandomOrder()
                     ->get();
+    }
+}
+
+/**
+ * POSTS WITH NUMBER OF POSTS
+ */
+if(!function_exists('categories')){
+    function categories(){
+        return SubCategory::whereHas('posts')
+                            ->with('posts')
+                            ->orderBy('subcategory_name','asc')
+                            ->get();
     }
 }
 

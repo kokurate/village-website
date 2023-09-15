@@ -1,0 +1,23 @@
+/* .custom-category {
+    text-decoration: none;
+    color: #000;
+}
+
+
+.custom-category:hover {
+    background: -webkit-linear-gradient(131deg, #fc3f00 0%, #fc3f00 99%);
+      background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    transition: .4s;
+}
+
+.single_sidebar_widget ul li  a:hover{
+    background: -webkit-linear-gradient(131deg, #fc3f00 0%, #fc3f00 99%);
+      background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    transition: .4s;
+  } */

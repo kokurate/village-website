@@ -23,6 +23,7 @@
             <link rel="stylesheet" href="/front/assets/css/slick.css">
             <link rel="stylesheet" href="/front/assets/css/nice-select.css">
             <link rel="stylesheet" href="/front/assets/css/style.css">      
+            <link rel="stylesheet" href="/front/mycss.css">      
             @stack('css')
    </head>
 
@@ -87,27 +88,10 @@
                         </div>
 
                         <div class="blog_right_sidebar">
-                            <aside class="single_sidebar_widget post_category_widget">
-                                <h4 class="widget_title">Category</h4>
-                                <ul class="list cat-list">
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Resaurant food</p>
-                                        <p>(37)</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Travel news</p>
-                                        <p>(10)</p>
-                                    </a>
-                                </li>
-                                </ul>
-                            </aside>
 
                             <aside class="single_sidebar_widget popular_post_widget">
-                                <h3 class="widget_title">Archive</h3>
                                 <nav>
+                                    <h3 class="">Archive</h3>
                                     <div class="nav nav-tabs my-2" id="nav-tab" role="tablist">
                                       <button class="nav-link genric-btn danger-border small active" id="nav-home-tab" data-toggle="tab" data-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" style="border: none;">Acak</button>
                                       <button class="nav-link genric-btn danger-border small" id="nav-profile-tab" data-toggle="tab" data-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" style="border: none;">Profile</button>
@@ -136,6 +120,23 @@
                                   
                                 
                             </aside>
+
+                            @if(categories())
+                            <aside class="single_sidebar_widget post_category_widget">
+                                <h4 class="widget_title">Category</h4>
+                                <ul class="list cat-list">
+                                    @foreach(categories() as $item)
+                                    <li>
+                                        <a href="{{ route('category_posts', $item->slug) }}" class="d-flex custom-category">
+                                            <p class="mx-1">{{ $item->subcategory_name }}</p>
+                                            <p class="mx-1">({{ $item->posts->count() }})</p>
+                                        </a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </aside>
+                            @endif
+
                         </div>
                     </div>
                 </div>
