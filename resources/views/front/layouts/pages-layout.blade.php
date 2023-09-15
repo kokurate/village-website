@@ -85,32 +85,57 @@
                                 <h4><a href="details.html">Welcome To The Best Model Winner Contest</a></h4>
                             </div>
                         </div>
-                        <div class="trand-right-single d-flex">
-                            <div class="trand-right-img">
-                                <img src="/front/assets/img/trending/right3.jpg" alt="">
-                            </div>
-                            <div class="trand-right-cap">
-                                <span class="color2">Bike Show</span>
-                                <h4><a href="details.html">Welcome To The Best Model Winner Contest</a></h4>
-                            </div>
-                        </div> 
-                        <div class="trand-right-single d-flex">
-                            <div class="trand-right-img">
-                                <img src="/front/assets/img/trending/right4.jpg" alt="">
-                            </div>
-                            <div class="trand-right-cap">
-                                <span class="color4">See beach</span>
-                                <h4><a href="details.html">Welcome To The Best Model Winner Contest</a></h4>
-                            </div>
-                        </div>
-                        <div class="trand-right-single d-flex">
-                            <div class="trand-right-img">
-                                <img src="/front/assets/img/trending/right5.jpg" alt="">
-                            </div>
-                            <div class="trand-right-cap">
-                                <span class="color1">Skeping</span>
-                                <h4><a href="details.html">Welcome To The Best Model Winner Contest</a></h4>
-                            </div>
+
+                        <div class="blog_right_sidebar">
+                            <aside class="single_sidebar_widget post_category_widget">
+                                <h4 class="widget_title">Category</h4>
+                                <ul class="list cat-list">
+                                <li>
+                                    <a href="#" class="d-flex">
+                                        <p>Resaurant food</p>
+                                        <p>(37)</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex">
+                                        <p>Travel news</p>
+                                        <p>(10)</p>
+                                    </a>
+                                </li>
+                                </ul>
+                            </aside>
+
+                            <aside class="single_sidebar_widget popular_post_widget">
+                                <h3 class="widget_title">Archive</h3>
+                                <nav>
+                                    <div class="nav nav-tabs my-2" id="nav-tab" role="tablist">
+                                      <button class="nav-link genric-btn danger-border small active" id="nav-home-tab" data-toggle="tab" data-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" style="border: none;">Acak</button>
+                                      <button class="nav-link genric-btn danger-border small" id="nav-profile-tab" data-toggle="tab" data-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" style="border: none;">Profile</button>
+                                      <button class="nav-link genric-btn danger-border small" id="nav-contact-tab" data-toggle="tab" data-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" style="border: none;">Contact</button>
+                                    </div>
+                                  </nav>
+                                  <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                        @if(recommended_posts())
+                                        @foreach(recommended_posts() as $item)
+                                        <div class="media post_item">
+                                            <img src="/storage/images/post_images/{{ $item->featured_image }}" alt="post" style="width: 100px;height:75px;object-fit: cover;">
+                                            <div class="media-body">
+                                                <a href="single-blog.html">
+                                                    <h3>{{ substr($item->post_title , 0 , 40) }}...</h3>
+                                                </a>
+                                                <p>{{ date_formatter($item->created_at) }}</p>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                        @endif
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">test 2</div>
+                                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">test 3</div>
+                                  </div>
+                                  
+                                
+                            </aside>
                         </div>
                     </div>
                 </div>

@@ -90,4 +90,17 @@ if(!function_exists('latest_6_post')){
     }
 }
 
+/**
+ * RANDOM RECOMMENDED POSTS
+ */
+IF(!function_exists('recommended_posts')){
+    function recommended_posts(){
+        return Post::with('author')
+                    ->with('subcategory')
+                    ->limit(5)
+                    ->inRandomOrder()
+                    ->get();
+    }
+}
+
 ?>
