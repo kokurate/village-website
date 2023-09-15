@@ -32,3 +32,5 @@ php artisan optimize
 php artisan make:middleware UserUniqueFilesFolder
 
 php artisan make:livewire AllPosts
+
+composer dump-autoload
