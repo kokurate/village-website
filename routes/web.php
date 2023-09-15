@@ -19,4 +19,4 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::view('/','front.layouts.pages-layout')->name('home');
+Route::view('/','front.pages.home')->name('home');
