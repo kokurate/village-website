@@ -61,7 +61,7 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 header-flex">
                             <!-- sticky -->
                                 <div class="sticky-logo">
-                                    <a href="index.html"><img src="/front/assets/img/logo/logo.png" alt=""></a>
+                                    <a href="/"><img src="/front/assets/img/logo/logo.png" alt=""></a>
                                 </div>
                             <!-- Main-menu -->
                             <div class="main-menu d-none d-md-block my-main-menu">
