@@ -42,6 +42,7 @@ Route::prefix('author')->name('author.')->group(function(){
         Route::view('/mata-pencaharian','back.pages.data-desa.pekerjaan')->name('pekerjaan');
         Route::view('/jenis-kelamin','back.pages.data-desa.jenis-kelamin')->name('jenis-kelamin');
         Route::view('/golongan-umur','back.pages.data-desa.golongan-umur')->name('golongan-umur');
+        Route::view('/agama','back.pages.data-desa.agama')->name('agama');
     });
 
 });

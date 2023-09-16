@@ -63,3 +63,4 @@ php artisan make:model GolonganUmur -ms
 php artisan make:livewire DataDesaGolonganUmur
 
 php artisan make:model Agama -ms
+php artisan make:livewire DataDesaAgama

@@ -98,6 +98,9 @@
                     <a class="dropdown-item" href="{{ route('author.data-desa.golongan-umur') }}">
                       Golongan Umur
                     </a>
+                    <a class="dropdown-item" href="{{ route('author.data-desa.agama') }}">
+                      Agama
+                    </a>
                     <a class="dropdown-item" href="/back/buttons.html">
                       Buttons
                     </a>
