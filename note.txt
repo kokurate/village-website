@@ -50,3 +50,5 @@ php artisan db:seed
 php artisan make:livewire DataDesaWilayah
 
 php artisan make:model TingkatPendidikan -ms
+
+php artisan make:livewire DataDesaTingkatPendidikan

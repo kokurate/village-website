@@ -144,7 +144,7 @@ class DataDesaWilayah extends Component
     public function render()
     {
         return view('livewire.data-desa-wilayah',[
-           'data_wilayah' => WilayahAdministratif::orderBy('created_at','ASC')->get()
+           'data_wilayah' => WilayahAdministratif::orderBy('created_at','DESC')->get()
         ]);
     }
 
