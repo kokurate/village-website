@@ -36,3 +36,5 @@ php artisan make:livewire AllPosts
 composer dump-autoload
 
 php artisan make:controller BlogController
+
+php artisan make:middleware isAdmin

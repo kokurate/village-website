@@ -19,8 +19,13 @@ Route::prefix('author')->name('author.')->group(function(){
         Route::post('/logout', [AuthorController::class,'logout'])->name('logout');
         Route::view('/profile','back.pages.profile')->name('profile');
         Route::post('/change-profile-picture', [AuthorController::class,'changeProfilePicture'])->name('change-profile-picture');
+    });
+
+    // Only admin can access the following routes
+    Route::middleware(['isAdmin'])->group(function(){
         Route::view('/authors', 'back.pages.authors')->name('authors');
         Route::view('/categories','back.pages.categories')->name('categories');
+
     });
 
     Route::prefix('posts')->name('posts.')->group(function (){
