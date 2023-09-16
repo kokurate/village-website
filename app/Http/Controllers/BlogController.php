@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\SubCategory;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -65,5 +66,29 @@ class BlogController extends Controller
     }
 
 
+
+    public function readPost($slug)
+    {
+        if(!$slug){
+            return abort(404);
+        }else{
+
+            $post = Post::where('post_slug', $slug)
+                            ->with('subcategory')
+                            ->with('author')
+                            ->first();
+
+            $data = [
+                'pageTitle' => Str::ucfirst($post->post_title),
+                'post' => $post
+            ];
+
+            return view('front.pages.single_post', $data);
+        }
+
+    }
+
+
+    
 
 }

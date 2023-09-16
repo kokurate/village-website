@@ -66,7 +66,7 @@
                             <div class="card-body ps-0">
                             <div class="row">
                                 <div class="col">
-                                <h3 class="mb-0"><a href="#" target="__blank">{{ $post->post_title }}</a></h3>
+                                <h3 class="mb-0"><a href="{{ route('read_post', $post->post_slug) }}" target="__blank">{{ $post->post_title }}</a></h3>
                                 </div>
                             </div>
                             <div class="row">
