@@ -83,7 +83,7 @@
               <div class="dropdown-menu">
                 <div class="dropdown-menu-columns">
                   <div class="dropdown-menu-column">
-                    <a class="dropdown-item" href="/back/buttons.html">
+                    <a class="dropdown-item" href="{{ route('author.data-desa.wilayah-administratif') }}">
                       Wilayah Administratif
                     </a>
                     <a class="dropdown-item" href="/back/buttons.html">

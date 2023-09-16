@@ -46,3 +46,5 @@ php artisan migrate --seed
 php artisan migrate --path=database\migrations\2023_09_16_063408_create_data_desas_table.php
 php artisan migrate --path=database\migrations\2023_09_16_063704_create_wilayah_administratifs_table.php
 php artisan db:seed
+
+php artisan make:livewire DataDesaWilayah

@@ -36,6 +36,10 @@ Route::prefix('author')->name('author.')->group(function(){
         Route::post('/update-post', [AuthorController::class,'updatePost'])->name('update-post');
     });
 
+    Route::prefix('data-desa')->name('data-desa.')->group(function(){
+        Route::view('/wilayah-administratif','back.pages.data-desa.wilayah-administratif')->name('wilayah-administratif');
+    });
+
 });
 
 ?>
