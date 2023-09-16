@@ -93,19 +93,19 @@
                                 <nav>
                                     <h3 class="">Archive</h3>
                                     <div class="nav nav-tabs my-2" id="nav-tab" role="tablist">
-                                      <button class="nav-link genric-btn danger-border small active" id="nav-home-tab" data-toggle="tab" data-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" style="border: none;">Acak</button>
-                                      <button class="nav-link genric-btn danger-border small" id="nav-profile-tab" data-toggle="tab" data-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" style="border: none;">Profile</button>
-                                      <button class="nav-link genric-btn danger-border small" id="nav-contact-tab" data-toggle="tab" data-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" style="border: none;">Contact</button>
+                                      <button class="nav-link genric-btn danger-border small active" id="nav-acak-tab" data-toggle="tab" data-target="#nav-acak" type="button" role="tab" aria-controls="nav-acak" aria-selected="true">Acak</button>
+                                      <button class="nav-link genric-btn danger-border small" id="nav-terbaru-tab" data-toggle="tab" data-target="#nav-terbaru" type="button" role="tab" aria-controls="nav-terbaru" aria-selected="false">Terbaru</button>
+                                      {{-- <button class="nav-link genric-btn danger-border small" id="nav-contact-tab" data-toggle="tab" data-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" style="border: none;">Contact</button> --}}
                                     </div>
                                   </nav>
                                   <div class="tab-content" id="nav-tabContent">
-                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                    <div class="tab-pane fade show active" id="nav-acak" role="tabpanel" aria-labelledby="nav-acak-tab">
                                         @if(recommended_posts())
                                         @foreach(recommended_posts() as $item)
                                         <div class="media post_item">
                                             <img src="/storage/images/post_images/{{ $item->featured_image }}" alt="post" style="width: 100px;height:75px;object-fit: cover;">
                                             <div class="media-body">
-                                                <a href="single-blog.html">
+                                                <a href="{{ route('read_post', $item->post_slug) }}">
                                                     <h3>{{ substr($item->post_title , 0 , 40) }}...</h3>
                                                 </a>
                                                 <p>{{ date_formatter($item->created_at) }}</p>
@@ -114,7 +114,21 @@
                                         @endforeach
                                         @endif
                                     </div>
-                                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">test 2</div>
+                                    <div class="tab-pane fade" id="nav-terbaru" role="tabpanel" aria-labelledby="nav-terbaru-tab">
+                                        @if(latest_sidebar_posts())
+                                        @foreach(latest_sidebar_posts() as $item)
+                                        <div class="media post_item">
+                                            <img src="/storage/images/post_images/{{ $item->featured_image }}" alt="post" style="width: 100px;height:75px;object-fit: cover;">
+                                            <div class="media-body">
+                                                <a href="{{ route('read_post', $item->post_slug) }}">
+                                                    <h3>{{ substr($item->post_title , 0 , 40) }}...</h3>
+                                                </a>
+                                                <p>{{ date_formatter($item->created_at) }}</p>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                        @endif
+                                    </div>
                                     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">test 3</div>
                                   </div>
                                   
