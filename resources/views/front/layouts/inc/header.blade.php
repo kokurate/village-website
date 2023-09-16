@@ -29,7 +29,7 @@
                     <!-- Logo -->
                     <div class="col-xl-3 col-lg-3 col-md-3">
                         <div class="logo">
-                            <a href="index.html"><img src="/front/assets/img/logo/logo.png" alt=""></a>
+                            <a href="/"><img src="/front/assets/img/logo/logo.png" alt=""></a>
                         </div>
                     </div>
                     <div class="col-xl-7 col-lg-7 col-md-6">
@@ -67,7 +67,7 @@
                             <div class="main-menu d-none d-md-block my-main-menu">
                                 <nav>                  
                                     <ul id="navigation">    
-                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="/">Home</a></li>
                                         <li><a href="categori.html">Category</a></li>
                                         @foreach(\App\Models\Category::whereHas('subcategories', function($q){
                                             $q->whereHas('posts');
@@ -75,13 +75,13 @@
                                         <li><a href="#">{{ $category->category_name }}</a>
                                             <ul class="submenu">
                                                 @foreach(\App\Models\SubCategory::where('parent_category', $category->id)->whereHas('posts')->get() as $subcategory)
-                                                    <li><a href="elements.html">{{ $subcategory->subcategory_name }}</a></li>
+                                                    <li><a href="{{ route('category_posts', $subcategory->slug) }}">{{ $subcategory->subcategory_name }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </li>
                                         @endforeach
                                         @foreach(\App\Models\SubCategory::where('parent_category', 0)->whereHas('posts')->get() as $subcategory)
-                                            <li><a href="contact.html">{{ $subcategory->subcategory_name }}</a></li>
+                                            <li><a href="{{ route('category_posts', $subcategory->slug) }}">{{ $subcategory->subcategory_name }}</a></li>
                                         @endforeach
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
