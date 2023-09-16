@@ -1,5 +1,5 @@
 <div>
-
+    
     <div class="row">
         <div class="d-flex justify-content-center">
             <div class="col-md-8 my-2">
@@ -12,10 +12,10 @@
                     {{-- <div class="card-status-start bg-primary"></div> --}}
                     <div class="card-header mt-1">
                         <ul class="nav nav-tabs card-header-tabs">
-                            <h3 class="d-flex ml-2">Data Tingkat Pendidikan </h3>
+                            <h3 class="d-flex ml-2">Data Mata Pencaharian</h3>
                             <li class="nav-item ms-auto">
                                 <a href="" class="btn btn-sm btn-primary" data-bs-toggle='modal'
-                                    data-bs-target='#tingkat_pendidikan_modal'>Tambah Data</a>
+                                    data-bs-target='#pekerjaan_modal'>Tambah Data</a>
                             </li>
                         </ul>
                     </div>
@@ -24,22 +24,22 @@
                             <table class="table table-vcenter card-table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Tingkat Pendidikan</th>
+                                        <th>Nama Mata Pencaharian</th>
                                         <th>Jumlah</th>
                                         <th class="w-1"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($all as $data)
+                                    @forelse ($data_pekerjaan as $data)
                                         
                                 
                                     <tr>
-                                        <td class="text-muted" style="font-size: 14px">{{ $data->tingkat_pendidikan }}</td>
+                                        <td class="text-muted" style="font-size: 14px">{{ $data->nama }}</td>
                                         <td class="text-muted" style="font-size: 14px">{{ $data->jumlah }}</td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="#" class="btn btn-sm btn-primary" wire:click.prevent='editTingkatPendidikan({{ $data->id }})'>Edit</a>&nbsp;
-                                                <a href="#" class="btn btn-sm btn-danger" wire:click.prevent='deleteTingkatPendidikan({{ $data->id }})'>Hapus</a>
+                                                <a href="#" class="btn btn-sm btn-primary" wire:click.prevent='editPekerjaan({{ $data->id }})'>Edit</a>&nbsp;
+                                                <a href="#" class="btn btn-sm btn-danger" wire:click.prevent='deletePekerjaan({{ $data->id }})'>Hapus</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -58,28 +58,28 @@
     </div>
     
     <!-- Modal Start -->
-    <div wire:ignore.self class="modal modal-blur fade" tabindex="-1" role="dialog" aria-hidden="true" id="tingkat_pendidikan_modal"
+    <div wire:ignore.self class="modal modal-blur fade" tabindex="-1" role="dialog" aria-hidden="true" id="pekerjaan_modal"
         data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <form class="modal-content" method="post"
-            @if($updateTingkatPendidikanMode)
-                wire:submit.prevent='updateTingkatPendidikan()'
+            @if($updatePekerjaanMode)
+                wire:submit.prevent='updatePekerjaan()'
             @else
-                wire:submit.prevent='addTingkatPendidikan'
+                wire:submit.prevent='addPekerjaan'
             @endif
             >
                 <div class="modal-header">
-                    <h5 class="modal-title">{{ $updateTingkatPendidikanMode ? 'Update Data Tingkat Pendidikan' : 'Tambah Data Tingkat Pendidikan' }}</h5>
+                    <h5 class="modal-title">{{ $updatePekerjaanMode ? 'Update Data Mata Pencaharian' : 'Tambah Data Mata Pencaharian' }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    @if($updateTingkatPendidikanMode)
-                        <input type="hidden" wire:model="selected_tingkat_pendidikan_id">
+                    @if($updatePekerjaanMode)
+                        <input type="hidden" wire:model="selected_pekerjaan_id">
                     @endif
                     <div class="mb-3">
-                        <label class="form-label">Tingkat Pendidikan</label>
-                        <input type="text" class="form-control @error('tp') is-invalid @enderror" name="example-text-input" placeholder="Masukkan Nama Tingkat Pendidikan" wire:model="tp">
-                    @error('tp')
+                        <label class="form-label">Nama Mata Pencaharian</label>
+                        <input type="text" class="form-control @error('nama') is-invalid @enderror" name="example-text-input" placeholder="Masukkan Nama Mata Pencaharian" wire:model="nama">
+                    @error('nama')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                     </div>
@@ -94,7 +94,7 @@
     
                 <div class="modal-footer">
                     <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">{{ $updateTingkatPendidikanMode ? 'Update' : 'Simpan'}}</button>
+                    <button type="submit" class="btn btn-primary">{{ $updatePekerjaanMode ? 'Update' : 'Simpan'}}</button>
                 </div>
             </form>
         </div>

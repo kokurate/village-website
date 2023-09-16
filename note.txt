@@ -54,4 +54,4 @@ php artisan make:model TingkatPendidikan -ms
 php artisan make:livewire DataDesaTingkatPendidikan
 
 php artisan make:model Pekerjaan -ms
-php artisan make:livewire DataDesaPekerjaan
+php artisan make:livewire DataDesaPekerjaan 

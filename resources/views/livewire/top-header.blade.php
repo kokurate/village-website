@@ -89,6 +89,9 @@
                     <a class="dropdown-item" href="{{ route('author.data-desa.tingkat-pendidikan') }}">
                       Tingkat Pendidikan
                     </a>
+                    <a class="dropdown-item" href="{{ route('author.data-desa.pekerjaan') }}">
+                      Mata Pencaharian
+                    </a>
                     <a class="dropdown-item" href="/back/buttons.html">
                       Buttons
                     </a>

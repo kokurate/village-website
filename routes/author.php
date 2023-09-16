@@ -39,6 +39,7 @@ Route::prefix('author')->name('author.')->group(function(){
     Route::prefix('data-desa')->name('data-desa.')->group(function(){
         Route::view('/wilayah-administratif','back.pages.data-desa.wilayah-administratif')->name('wilayah-administratif');
         Route::view('/tingkat-pendidikan','back.pages.data-desa.tingkat-pendidikan')->name('tingkat-pendidikan');
+        Route::view('/mata-pencaharian','back.pages.data-desa.pekerjaan')->name('pekerjaan');
     });
 
 });
