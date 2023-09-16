@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\JenisKelamin;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,7 +28,8 @@ class DatabaseSeeder extends Seeder
         // $this->call(DataDesaSeeder::class);
         // $this->call(WilayahAdministratifSeeder::class);
         // $this->call(TingkatPendidikanSeeder::class);
-        $this->call(PekerjaanSeeder::class);
+        // $this->call(PekerjaanSeeder::class);
+        $this->call(JenisKelaminSeeder::class);
 
     }
 }
