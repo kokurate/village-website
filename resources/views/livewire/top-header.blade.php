@@ -92,6 +92,9 @@
                     <a class="dropdown-item" href="{{ route('author.data-desa.pekerjaan') }}">
                       Mata Pencaharian
                     </a>
+                    <a class="dropdown-item" href="{{ route('author.data-desa.jenis-kelamin') }}">
+                      Jenis Kelamin
+                    </a>
                     <a class="dropdown-item" href="/back/buttons.html">
                       Buttons
                     </a>

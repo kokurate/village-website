@@ -57,3 +57,4 @@ php artisan make:model Pekerjaan -ms
 php artisan make:livewire DataDesaPekerjaan 
 
 php artisan make:model JenisKelamin -ms
+php artisan make:livewire DataDesaJenisKelamin

@@ -40,6 +40,7 @@ Route::prefix('author')->name('author.')->group(function(){
         Route::view('/wilayah-administratif','back.pages.data-desa.wilayah-administratif')->name('wilayah-administratif');
         Route::view('/tingkat-pendidikan','back.pages.data-desa.tingkat-pendidikan')->name('tingkat-pendidikan');
         Route::view('/mata-pencaharian','back.pages.data-desa.pekerjaan')->name('pekerjaan');
+        Route::view('/jenis-kelamin','back.pages.data-desa.jenis-kelamin')->name('jenis-kelamin');
     });
 
 });

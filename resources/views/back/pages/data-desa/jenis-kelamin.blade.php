@@ -1,5 +1,5 @@
 @extends('back.layouts.pages-layout')
-@section('pageTitle', isset($pageTitle) ? $pageTitle : 'Data Desa | Pekerjaan')
+@section('pageTitle', isset($pageTitle) ? $pageTitle : 'Login')
 @section('css') @livewireStyles
 @section('js')  @livewireScripts
 @section('pageHeader')
@@ -13,11 +13,11 @@
             <ol class="breadcrumb" aria-label="breadcrumbs">
                 <li class="breadcrumb-item"><a href="{{ route('author.home') }}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Data Desa</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="#">Pekerjaan</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="#">Jenis Kelamin</a></li>
               </ol>
           </div>
           <h2 class="page-title">
-            Mata Pencaharian
+            Jenis Kelamin
           </h2>
         </div>
       </div>
@@ -27,26 +27,26 @@
 @endsection
 @section('content')
 
-    @livewire('data-desa-pekerjaan')
+  @livewire('data-desa-jenis-kelamin')
 
 @endsection
 @push('js')
     <script>
 
-        window.addEventListener('hidePekerjaanModal', function(e){
-            $('#pekerjaan_modal').modal('hide');
+        window.addEventListener('hideJenisKelaminModal', function(e){
+            $('#jenis_kelamin_modal').modal('hide');
         });
 
 
-        window.addEventListener('showPekerjaanModal', function(e){
-            $('#pekerjaan_modal').modal('show');
+        window.addEventListener('showJenisKelaminModal', function(e){
+            $('#jenis_kelamin_modal').modal('show');
         });
 
-        $('#pekerjaan_modal').on('hidden.bs.modal', function(e){
+        $('#jenis_kelamin_modal').on('hidden.bs.modal', function(e){
           Livewire.emit('resetModalForm');
         });
 
-        window.addEventListener('deletePekerjaan', function(event) {
+        window.addEventListener('deleteJenisKelamin', function(event) {
             Swal.fire({
                 title: event.detail.title,
                 html: event.detail.html,
@@ -61,7 +61,7 @@
                 allowOutsideClick: false,
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Livewire.emit('deletePekerjaanAction', event.detail.id);
+                    Livewire.emit('deleteJenisKelaminAction', event.detail.id);
                 }
             });
         });
