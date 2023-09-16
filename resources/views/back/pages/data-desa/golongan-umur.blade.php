@@ -1,5 +1,5 @@
 @extends('back.layouts.pages-layout')
-@section('pageTitle', isset($pageTitle) ? $pageTitle : 'Data Desa | Jenis Kelamin')
+@section('pageTitle', isset($pageTitle) ? $pageTitle : 'Data Desa | Golongan Umur')
 @section('css') @livewireStyles
 @section('js')  @livewireScripts
 @section('pageHeader')
@@ -13,11 +13,11 @@
             <ol class="breadcrumb" aria-label="breadcrumbs">
                 <li class="breadcrumb-item"><a href="{{ route('author.home') }}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Data Desa</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="#">Jenis Kelamin</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="#">Golongan Umur</a></li>
               </ol>
           </div>
           <h2 class="page-title">
-            Jenis Kelamin
+           Golongan Umur
           </h2>
         </div>
       </div>
@@ -27,26 +27,26 @@
 @endsection
 @section('content')
 
-  @livewire('data-desa-jenis-kelamin')
+@livewire('data-desa-golongan-umur')
 
 @endsection
 @push('js')
     <script>
 
-        window.addEventListener('hideJenisKelaminModal', function(e){
-            $('#jenis_kelamin_modal').modal('hide');
+        window.addEventListener('hideGolonganUmurModal', function(e){
+            $('#golongan_umur_modal').modal('hide');
         });
 
 
-        window.addEventListener('showJenisKelaminModal', function(e){
-            $('#jenis_kelamin_modal').modal('show');
+        window.addEventListener('showGolonganUmurModal', function(e){
+            $('#golongan_umur_modal').modal('show');
         });
 
-        $('#jenis_kelamin_modal').on('hidden.bs.modal', function(e){
+        $('#golongan_umur_modal').on('hidden.bs.modal', function(e){
           Livewire.emit('resetModalForm');
         });
 
-        window.addEventListener('deleteJenisKelamin', function(event) {
+        window.addEventListener('deleteGolonganUmur', function(event) {
             Swal.fire({
                 title: event.detail.title,
                 html: event.detail.html,
@@ -61,7 +61,7 @@
                 allowOutsideClick: false,
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Livewire.emit('deleteJenisKelaminAction', event.detail.id);
+                    Livewire.emit('deleteGolonganUmurAction', event.detail.id);
                 }
             });
         });
