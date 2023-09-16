@@ -13,6 +13,7 @@ class DataDesaWilayah extends Component
 
     protected $listeners = [
         'resetModalForm',
+        'deleteWilayahAction',
     ];
 
     public function resetModalForm(){
@@ -118,6 +119,26 @@ class DataDesaWilayah extends Component
             }
         }
     }
+
+
+    public function deleteWilayah($id){
+        $data_wilayah = WilayahAdministratif::find($id);
+        $this->dispatchBrowserEvent('deleteWilayah',[
+            'title' => 'Apakah Kamu Yakin?',
+            'html' => 'Kamu akan menghapus dusun <b>'.$data_wilayah->dusun.'</b>',
+            'id' => $id
+        ]);
+    }
+
+    public function deleteWilayahAction($id){
+        $data_wilayah = WilayahAdministratif::where('id', $id)->first();
+
+        $data_wilayah->delete();
+        $this->dispatchBrowserEvent('info',['message' => 'Data Wilayah Administratif telah berhasil dihapus.']);
+
+    }
+
+
 
 
     public function render()
