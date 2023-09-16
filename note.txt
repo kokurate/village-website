@@ -48,3 +48,5 @@ php artisan migrate --path=database\migrations\2023_09_16_063704_create_wilayah_
 php artisan db:seed
 
 php artisan make:livewire DataDesaWilayah
+
+php artisan make:model TingkatPendidikan -ms

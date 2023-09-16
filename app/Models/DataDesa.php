@@ -17,4 +17,8 @@ class DataDesa extends Model
         return $this->hasMany(WilayahAdministratif::class,'data_desa_id','id');
     }
 
+    public function tingkatpendidikan(){
+        return $this->hasMany(TingkatPendidikan::class,'data_desa_id','id');
+    }
+
 }

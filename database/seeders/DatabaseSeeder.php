@@ -23,8 +23,9 @@ class DatabaseSeeder extends Seeder
 
         // $this->call(TypeSeeder::class);
         // $this->call(UserSeeder::class);
-        $this->call(DataDesaSeeder::class);
-        $this->call(WilayahAdministratifSeeder::class);
+        // $this->call(DataDesaSeeder::class);
+        // $this->call(WilayahAdministratifSeeder::class);
+        $this->call(TingkatPendidikanSeeder::class);
 
     }
 }
