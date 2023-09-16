@@ -39,5 +39,14 @@
         });
 
 
+        window.addEventListener('showWilayahModal', function(e){
+            $('#wilayah_modal').modal('show');
+        });
+
+        $('#wilayah_modal').on('hidden.bs.modal', function(e){
+          Livewire.emit('resetModalForm');
+        });
+
+
     </script>
 @endpush
