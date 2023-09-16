@@ -21,4 +21,8 @@ class DataDesa extends Model
         return $this->hasMany(TingkatPendidikan::class,'data_desa_id','id');
     }
 
+    public function pekerjaan(){
+        return $this->hasMany(Pekerjaan::class,'data_desa_id','id');
+    }
+
 }
