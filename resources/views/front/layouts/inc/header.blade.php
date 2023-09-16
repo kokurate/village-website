@@ -45,8 +45,8 @@
                         <div class="header-right-btn f-right d-none d-lg-block">
                             <i class="fas fa-search special-tag"></i>
                             <div class="search-box">
-                                <form action="#">
-                                    <input type="text" placeholder="Search">
+                                <form action="{{ route('search_posts') }}">
+                                    <input id="search-query" name="query" value="{{ Request('query') }}" type="search" placeholder="Masukkan Keywords">
                                     
                                 </form>
                             </div>

@@ -1,5 +1,5 @@
 @extends('front.layouts.pages-layout')
-@section('pageTitle', isset($pageTitle) ? $pageTitle : 'Kategori')
+@section('pageTitle', isset($pageTitle) ? $pageTitle : 'Pencarian')
 @section('latest-post') @include('front.layouts.inc.header-latest-post') @endsection
 @section('css')
 @section('js')
@@ -10,9 +10,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="row d-flex justify-content-between">
-                    <div class="col-lg-3 col-md-3">
+                    <div class="col-lg-6 col-md-6">
                         <div class="section-tittle mb-30">
-                            <h3>{{ $category->subcategory_name }}</h3>
+                            <h3>{{ $pageTitle }}</h3>
                         </div>
                     </div>
                 </div>

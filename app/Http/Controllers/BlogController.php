@@ -33,6 +33,37 @@ class BlogController extends Controller
     }
 
 
+    public function searchBlog(Request $request)
+    {
+        $query = request()->query('query');
+        if($query && strlen($query) >= 2){
+            $searchValues = preg_split('/\s+/', $query, -1, PREG_SPLIT_NO_EMPTY);
+            $posts = Post::query();
+
+            $posts->where(function($q) use($searchValues){
+                foreach($searchValues as $value){
+                    $q->orWhere('post_title','LIKE',"%{$value}%");
+                    $q->orWhere('post_content','LIKE',"%{$value}%");
+                }
+            });
+
+            $posts = $posts->with('subcategory')
+                           ->with('author')
+                           ->orderBy('created_at','desc')
+                           ->paginate(6);
+
+            $data = [
+                'pageTitle' => 'Hasil pencarian  :: ' .request()->query('query'),
+                'posts' => $posts  
+            ];
+
+            return view('front.pages.search_posts', $data);
+
+        }else{
+            return abort(404); // we can also redirect back to search page with error message
+        }
+    }
+
 
 
 }
