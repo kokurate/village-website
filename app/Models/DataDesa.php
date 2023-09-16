@@ -29,4 +29,8 @@ class DataDesa extends Model
         return $this->hasMany(JenisKelamin::class,'data_desa_id','id');
     }
 
+    public function agama(){
+        return $this->hasMany(Agama::class,'data_desa_id','id');
+    }
+
 }

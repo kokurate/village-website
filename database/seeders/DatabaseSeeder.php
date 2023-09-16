@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Agama;
 use App\Models\JenisKelamin;
 use Illuminate\Database\Seeder;
 
@@ -30,7 +31,8 @@ class DatabaseSeeder extends Seeder
         // $this->call(TingkatPendidikanSeeder::class);
         // $this->call(PekerjaanSeeder::class);
         // $this->call(JenisKelaminSeeder::class);
-        $this->call(GolonganUmurSeeder::class);
+        // $this->call(GolonganUmurSeeder::class);
+        $this->call(AgamaSeeder::class);
 
     }
 }
