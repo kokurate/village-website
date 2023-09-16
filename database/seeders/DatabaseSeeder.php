@@ -29,7 +29,8 @@ class DatabaseSeeder extends Seeder
         // $this->call(WilayahAdministratifSeeder::class);
         // $this->call(TingkatPendidikanSeeder::class);
         // $this->call(PekerjaanSeeder::class);
-        $this->call(JenisKelaminSeeder::class);
+        // $this->call(JenisKelaminSeeder::class);
+        $this->call(GolonganUmurSeeder::class);
 
     }
 }

@@ -112,7 +112,7 @@ class DataDesaJenisKelamin extends Component
         $data = JenisKelamin::where('id', $id)->first();
 
         $data->delete();
-        $this->dispatchBrowserEvent('info',['message' => 'Data Pekerjaan telah berhasil dihapus.']);
+        $this->dispatchBrowserEvent('info',['message' => 'Data Jenis Kelamin telah berhasil dihapus.']);
 
     }
 

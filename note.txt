@@ -58,3 +58,5 @@ php artisan make:livewire DataDesaPekerjaan
 
 php artisan make:model JenisKelamin -ms
 php artisan make:livewire DataDesaJenisKelamin
+
+php artisan make:model GolonganUmur -ms
