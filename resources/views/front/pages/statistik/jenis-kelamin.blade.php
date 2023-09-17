@@ -1,0 +1,1 @@
+@include('front.pages.statistik.inc.pie-chart')

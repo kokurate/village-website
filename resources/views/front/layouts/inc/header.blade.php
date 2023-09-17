@@ -68,7 +68,6 @@
                                 <nav>                  
                                     <ul id="navigation">    
                                         <li><a href="/">Home</a></li>
-                                        <li><a href="categori.html">Category</a></li>
                                         @foreach(\App\Models\Category::whereHas('subcategories', function($q){
                                             $q->whereHas('posts');
                                           })->get() as $category)
@@ -80,6 +79,16 @@
                                             </ul>
                                         </li>
                                         @endforeach
+                                        <li><a href="#">Data Desa</a>
+                                            <ul class="submenu">
+                                                    <li><a href="{{ route('statistik1') }}">Wilayah Administratif</a></li>
+                                                    <li><a href="{{ route('statistik2') }}">Tingkat Pendidikan</a></li>
+                                                    <li><a href="{{ route('statistik3') }}">Mata Pencaharian</a></li>
+                                                    <li><a href="{{ route('statistik4') }}">Jenis Kelamin</a></li>
+                                                    <li><a href="{{ route('statistik5') }}">Golongan Umur</a></li>
+                                                    <li><a href="{{ route('statistik6') }}">Agama</a></li>
+                                            </ul>
+                                        </li>
                                         @foreach(\App\Models\SubCategory::where('parent_category', 0)->whereHas('posts')->get() as $subcategory)
                                             <li><a href="{{ route('category_posts', $subcategory->slug) }}">{{ $subcategory->subcategory_name }}</a></li>
                                         @endforeach
