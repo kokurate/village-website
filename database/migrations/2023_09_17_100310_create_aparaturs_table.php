@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('aparaturs', function (Blueprint $table) {
             $table->id();
+            $table->string('nama')->nullable();
+            $table->string('jabatan')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
