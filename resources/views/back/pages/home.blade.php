@@ -28,47 +28,31 @@
 
 <div class="page-body">
   <div class="container-xl">
-    <div class="row row-cards">
-      <div class="col-md-8">
+    <div class="row">
+      <div class="col-lg-4 col-sm-12 my-2">
         <div class="card">
           <div class="card-body">
-            <h3 class="card-title">Response times across regions in the last day</h3>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h3 class="card-title">Uptime incidents per day</h3>
+            <h3 class="card-title">Aparatur Desa</h3>
           </div>
             <div class="card">
               <div class="card-body">
+              
                 <div id="carousel-captions" class="carousel slide" data-bs-ride="carousel">
                   <div class="carousel-inner">
-                    <div class="carousel-item">
-                      <img class="d-block w-100" alt="" src="/back/static/photos/hero.jpg" ">
+
+                
+                    @foreach(\App\Models\Aparatur::all() as  $data)
+                    <div class="carousel-item active">     
+                      <img class="d-block w-100" alt="" src="{{ $data->image }}" >
                       <div class="carousel-caption-background d-none d-md-block"></div>
                       <div class="carousel-caption d-none d-md-block">
-                        <h3>Slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        <h3>{{ $data->nama }}</h3>
+                        <p>{{ $data->jabatan }}</p>
                       </div>
                     </div>
-                    <div class="carousel-item">
-                      <img class="d-block w-100" alt="" src="/back/static/photos/young-entrepreneur-working-from-a-modern-cafe-2.jpg">
-                      <div class="carousel-caption-background d-none d-md-block"></div>
-                      <div class="carousel-caption d-none d-md-block">
-                        <h3>Slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                      </div>
-                    </div>
-                    <div class="carousel-item active">
-                      <img class="d-block w-100" alt="" src="/back/static/photos/woman-working-on-laptop-at-home-office.jpg">
-                      <div class="carousel-caption-background d-none d-md-block"></div>
-                      <div class="carousel-caption d-none d-md-block">
-                        <h3>Slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                      </div>
-                    </div>
+                    @endforeach
+          
+                   
                   </div>
                   <a class="carousel-control-prev" href="#carousel-captions" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -83,7 +67,7 @@
             </div>
         </div>
       </div>
-      <div class="col-12">
+      <div class="col-lg-8 col-sm-12 my-2">
         <div class="card">
 
           <div class="accordion" id="accordion-example">
@@ -106,6 +90,8 @@
                         <tr>
                           <th>Nama</th>
                           <th>Jabatan</th>
+                          <th>Foto</th>
+                          <th>Tambah Gambar</th>
                           <th class="w-1"></th>
                         </tr>
                       </thead>
@@ -115,10 +101,20 @@
                           <td>{{ $data->nama }}</td>
                           <td>{{ $data->jabatan }}</td>
                           <td>
+                            @if ($data->image == asset('back/dist/img/aparatur/default-img.png') )
+                                 <span class="text-danger"><strong>X</strong></span>
+                            @else
+                                <span class="text-success"><strong>Yes</strong></span>
+                            @endif
+                          </td>
+                          <td>
                             <div class="btn-group">
-                              <a href="#" class="btn btn-sm btn-primary" wire:click.prevent='editAgama({{ $data->id }})'>Edit</a>&nbsp;
-                              <a href="#" class="btn btn-sm btn-danger" wire:click.prevent='deleteAgama({{ $data->id }})'>Hapus</a>
-                          </div>
+                              <input type="file" name="gambar{{ $data->id }}" id="gambar{{ $data->id }}" class="" >
+                              {{-- <a href="#" class="btn btn-sm btn-primary" wire:click.prevent='editAgama({{ $data->id }})'>Edit</a>&nbsp; --}}
+                            </div>
+                          </td>
+                          <td>
+                            <a href="#" class="btn btn-sm btn-danger" >Hapus</a>
                           </td>
                         </tr>
                         @empty
@@ -151,9 +147,33 @@
 
 
         </div>
-      </div>
     </div>
+  </div>
+
   </div>
 </div>
 
 @endsection
+@push('js')
+
+  @foreach(\App\Models\Aparatur::all() as $data)
+  <script>
+      $('#gambar{{ $data->id }}').ijaboCropTool({
+          preview: '.image-previewer',
+          setRatio: 7/8,
+          allowedExtensions: ['jpg', 'jpeg', 'png'],
+          buttonsText: ['CROP', 'QUIT'],
+          buttonsColor: ['#30bf7d', '#ee5155', -15],
+          processUrl:'{{ route("author.cropAparatur",  $data->id ) }}',
+          withCSRF: ['_token', '{{ csrf_token() }}'],
+          onSuccess: function (message, element, status) {
+            toastr.success(message);
+          },
+          onError: function (message, element, status) {
+            toastr.error(message);
+          }
+      });
+  </script>
+  @endforeach
+
+@endpush

@@ -14,4 +14,12 @@ class Aparatur extends Model
         'jabatan',
         'image',
     ];
+
+    public function getImageAttribute($value){
+        if($value){
+            return asset('back/dist/img/aparatur/'.$value);
+        }else{
+            return asset('back/dist/img/aparatur/default-img.png');
+        }
+    }
 }
