@@ -24,7 +24,7 @@
 @section('content')
 
 <hr>
-<h2>Selamat Data <strong>{{ auth()->user()->name }}</strong></h2>
+<h2>Selamat Datang <strong>{{ auth()->user()->name }}</strong></h2>
 
 <div class="page-body">
   <div class="container-xl">
@@ -41,7 +41,7 @@
                   <div class="carousel-inner">
 
                 
-                    @foreach(\App\Models\Aparatur::all() as  $data)
+                    @forelse(\App\Models\Aparatur::all() as  $data)
                     <div class="carousel-item active">     
                       <img class="d-block w-100" alt="" src="{{ $data->image }}" >
                       <div class="carousel-caption-background d-none d-md-block"></div>
@@ -50,7 +50,9 @@
                         <p>{{ $data->jabatan }}</p>
                       </div>
                     </div>
-                    @endforeach
+                    @empty
+                    <span class="text-danger">Tidak Ada Data</span>
+                    @endforelse
           
                    
                   </div>
@@ -84,64 +86,22 @@
 
                   <hr>
 
-                  <div class="card-table table-responsive">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>Nama</th>
-                          <th>Jabatan</th>
-                          <th>Foto</th>
-                          <th>Tambah Gambar</th>
-                          <th class="w-1"></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        @forelse(\App\Models\Aparatur::all() as $data)
-                        <tr>
-                          <td>{{ $data->nama }}</td>
-                          <td>{{ $data->jabatan }}</td>
-                          <td>
-                            @if ($data->image == asset('back/dist/img/aparatur/default-img.png') )
-                                 <span class="text-danger"><strong>X</strong></span>
-                            @else
-                                <span class="text-success"><strong>Yes</strong></span>
-                            @endif
-                          </td>
-                          <td>
-                            <div class="btn-group">
-                              <input type="file" name="gambar{{ $data->id }}" id="gambar{{ $data->id }}" class="" >
-                              {{-- <a href="#" class="btn btn-sm btn-primary" wire:click.prevent='editAgama({{ $data->id }})'>Edit</a>&nbsp; --}}
-                            </div>
-                          </td>
-                          <td>
-                            <a href="#" class="btn btn-sm btn-danger" >Hapus</a>
-                          </td>
-                        </tr>
-                        @empty
-                        <tr>
-                          <td>
-                            <span class="text-danger">Tidak ada data yang ditemukan</span>
-                          </td>
-                        </tr>
-                        @endforelse
-                      </tbody>
-                    </table>
-                  </div>
+                  @livewire('author-aparatur-desa')
                 </div>
               </div>
             </div>
-            {{-- <div class="accordion-item">
+            <div class="accordion-item">
               <h2 class="accordion-header" id="heading-2">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="false">
-                  Accordion Item #2
+                  Surat Online
                 </button>
               </h2>
               <div id="collapse-2" class="accordion-collapse collapse" data-bs-parent="#accordion-example">
                 <div class="accordion-body pt-0">
-                  <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                 <strong>Surat Online Section</strong>
                 </div>
               </div>
-            </div> --}}
+            </div>
             </div>
           </div>
 
@@ -173,6 +133,28 @@
             toastr.error(message);
           }
       });
+
+
+      window.addEventListener('deleteAparatur', function(event) {
+            Swal.fire({
+                title: event.detail.title,
+                html: event.detail.html,
+                icon: 'warning', // Use a warning icon
+                showCloseButton: true,
+                showCancelButton: true,
+                cancelButtonText: 'Batal',
+                confirmButtonText: 'Hapus',
+                cancelButtonColor: '#d33',
+                confirmButtonColor: '#3085d6',
+                width: '500px',
+                allowOutsideClick: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.emit('deleteAparaturAction', event.detail.id);
+                }
+            });
+        });
+
   </script>
   @endforeach
 

@@ -68,3 +68,5 @@ php artisan make:livewire DataDesaAgama
 php artisan make:model Aparatur -m
 
 php artisan make:livewire AuthorAddAparaturForm
+
+php artisan make:livewire AuthorAparaturDesa

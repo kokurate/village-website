@@ -83,7 +83,7 @@
                                 
                                     <!-- Slides -->
                                     <div class="carousel-inner">
-                                        @foreach(\App\Models\Aparatur::all() as $index => $data)
+                                        @forelse(\App\Models\Aparatur::all() as $index => $data)
                                             <div class="carousel-item @if($index === 0) active @endif">
                                                 {{-- <img class="d-block w-100" src="{{ $data->image }}" alt="{{ $data->nama }}"> --}}
                                                 <img src="{{ $data->image }}" alt="" style="width:100%;height:100%;border-radius:10%;border:2px solid;">
@@ -92,7 +92,9 @@
                                                     <p class="" style="background-color:white; "><strong>{{ $data->jabatan }}</strong></p>
                                                 </div>
                                             </div>
-                                        @endforeach
+                                        @empty
+                                            <span class="text-danger">Tidak Ada Data</span>
+                                        @endforelse
                                     </div>
                                 
                                     <!-- Controls -->
