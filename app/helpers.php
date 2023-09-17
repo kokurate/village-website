@@ -82,10 +82,10 @@ if(!function_exists('latest_6_post')){
     function latest_6_post(){
         return Post::with('author')
                     ->with('subcategory')
-                    ->skip(4) // Skip the first four records
-                    ->limit(6)
                     ->orderBy('created_at', 'desc')
-                    ->get();
+                    ->skip(4) // Skip the first four records
+                    ->paginate(6);
+                  
     
 
     }

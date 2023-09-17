@@ -22,9 +22,10 @@
                         </div>
 
                         <div class="blog_details">
-                            <a class="d-inline-block" href="single-blog.html">
+                            <a class="d-inline-block" href="{{ route('read_post', $latest_post->post_slug) }}">
                                 <h2>{{ $latest_post->post_title }}</h2>
                             </a>
+                            {{-- <p>{!! substr($latest_post->post_content,0,250) !!}...</p> --}}
                             <p>{!! substr($latest_post->post_content,0,250) !!}...</p>
                             <ul class="blog-info-link">
                                 <li><a href="#"><i class="fa fa-user"></i>{{ $latest_post->author->name }}</a></li>
@@ -34,9 +35,11 @@
                     </article>
                     @endforeach
                     @endif
-                 <!-- Pagination here -->
-                    
+                    @if(latest_6_post())
+                    <!-- Pagination here -->
+                    {{ latest_6_post()->links('front.layouts.inc.custom_pagination') }}
 
+                    @endif
                 </div>
             </div>
         
