@@ -1,5 +1,7 @@
 @extends('back.layouts.pages-layout')
 @section('pageTitle', isset($pageTitle) ? $pageTitle : 'Home')
+@section('css') @livewireStyles
+@section('js')  @livewireScripts
 @section('pageHeader')
 
 <div class="page-header d-print-none">
@@ -94,29 +96,38 @@
               <div id="collapse-1" class="accordion-collapse collapse" data-bs-parent="#accordion-example">
                 <div class="accordion-body pt-0">
                   
-                  
+                  @livewire('author-add-aparatur-form')
+
+                  <hr>
 
                   <div class="card-table table-responsive">
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>Time period</th>
-                          <th>Availability</th>
-                          <th>Downtime</th>
-                          <th>Incidents</th>
-                          <th>Longest incident</th>
-                          <th>Avg. incident</th>
+                          <th>Nama</th>
+                          <th>Jabatan</th>
+                          <th class="w-1"></th>
                         </tr>
                       </thead>
                       <tbody>
+                        @forelse(\App\Models\Aparatur::all() as $data)
                         <tr>
-                          <td>Today</td>
-                          <td>98.9533%</td>
-                          <td>1 minute</td>
-                          <td>1</td>
-                          <td>1 minute</td>
-                          <td>1 minute</td>
+                          <td>{{ $data->nama }}</td>
+                          <td>{{ $data->jabatan }}</td>
+                          <td>
+                            <div class="btn-group">
+                              <a href="#" class="btn btn-sm btn-primary" wire:click.prevent='editAgama({{ $data->id }})'>Edit</a>&nbsp;
+                              <a href="#" class="btn btn-sm btn-danger" wire:click.prevent='deleteAgama({{ $data->id }})'>Hapus</a>
+                          </div>
+                          </td>
                         </tr>
+                        @empty
+                        <tr>
+                          <td>
+                            <span class="text-danger">Tidak ada data yang ditemukan</span>
+                          </td>
+                        </tr>
+                        @endforelse
                       </tbody>
                     </table>
                   </div>

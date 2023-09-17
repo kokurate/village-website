@@ -99,6 +99,14 @@
           toastr.error(event.detail.message);
         });
 
+        document.addEventListener('2sreload', function () {
+            setTimeout(function () {
+                // Reload the current page
+                var currentURL = window.location.href;
+                window.location.href = currentURL;
+            }, 2000);
+        });
+
       </script>
 
     @stack('js')
