@@ -34,3 +34,6 @@ Route::get('statistik/mata-pencaharian', [BlogController::class,'statistik_mataP
 Route::get('statistik/jenis-kelamin', [BlogController::class,'statistik_jenisKelamin'])->name('statistik4');
 Route::get('statistik/golongan-umur', [BlogController::class,'statistik_golonganUmur'])->name('statistik5');
 Route::get('statistik/agama', [BlogController::class,'statistik_agama'])->name('statistik6');
+
+#=============== Surat Online
+Route::view('surat-online','front.pages.surat-online')->name('surat_online');

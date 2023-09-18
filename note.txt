@@ -70,3 +70,7 @@ php artisan make:model Aparatur -m
 php artisan make:livewire AuthorAddAparaturForm
 
 php artisan make:livewire AuthorAparaturDesa
+
+php artisan make:model SuratOnline -m
+php artisan make:model JenisSurat -ms
+php artisan make:livewire VisitorSuratOnlineForm

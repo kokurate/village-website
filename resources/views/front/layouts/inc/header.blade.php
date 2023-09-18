@@ -92,7 +92,7 @@
                                         @foreach(\App\Models\SubCategory::where('parent_category', 0)->whereHas('posts')->get() as $subcategory)
                                             <li><a href="{{ route('category_posts', $subcategory->slug) }}">{{ $subcategory->subcategory_name }}</a></li>
                                         @endforeach
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="{{ route('surat_online') }}">Surat Online</a></li>
                                     </ul>
                                 </nav>
                             </div>
