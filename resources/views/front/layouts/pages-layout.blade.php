@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="/front/assets/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 
     <!-- CSS here -->
     <link rel="stylesheet" href="/front/mycss.css">
@@ -26,11 +26,6 @@
     <link rel="stylesheet" href="/front/assets/css/style.css">
     <link rel="stylesheet" href="/front/mycss.css">
 
-       <!-- Toastr Cdn-->
-       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-       <!-- Sweet Alert 2 -->
-       <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
 
     @stack('css')
 </head>
@@ -71,7 +66,7 @@
                     <div class="row">
                             @yield('one-page')
                         <div class="col-lg-8">
-                            {{-- @yield('latest-post') --}}
+                            @yield('latest-post')
                             {{--
                             <hr> --}}
                             @yield('content')
@@ -132,15 +127,6 @@
     <script src="/front/assets/js/plugins.js"></script>
     <script src="/front/assets/js/main.js"></script>
 
-       <!-- Jquery-->
-       <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
- 
-       <!-- Toastr  cdn -->
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-       
-       <!-- Sweet alert 2-->
-       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
- 
 
 
     <script>

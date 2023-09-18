@@ -10,7 +10,7 @@
         <div class="col-lg">
           <div class="container-tight">
             <div class="text-center mb-4">
-              <a href="." class="navbar-brand navbar-brand-autodark"><img src="/back/static/logo.svg" height="36" alt=""></a>
+              {{-- <a href="/" class="navbar-brand navbar-brand-autodark"><img src="/logo1.png" height="36" alt=""></a> --}}
             </div>
             <div class="card card-md">
               <div class="card-body">
@@ -23,6 +23,11 @@
                         <a href="{{ route('author.forgot-password') }}">Saya Lupa Password</a>
                       </span>
                     </label>
+                    <label class="form-label d-flex text-left">
+                      <span class="form-label-description">
+                        <a href="{{ route('home') }}">Kembali</a>
+                      </span>
+                    </label>
                 </div>
 
               </div>
@@ -30,7 +35,9 @@
           </div>
         </div>
         <div class="col-lg d-none d-lg-block">
-          <img src="/back/static/illustrations/undraw_secure_login_pdn4.svg" height="300" class="d-block mx-auto" alt="">
+          <img src="/logo1.png" height="300" class="d-block mx-auto" alt="">
+          <h1 class="text-center mt-2">Administrator</h1>
+          <h1 class="text-center mt-2">Desa Toruakat</h1>
         </div>
       </div>
     </div>

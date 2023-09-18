@@ -6,10 +6,11 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-        <a href="/author/home">
-          <img src="/front/assets/img/logo.png" width="110" height="32" alt="Desa Toruakatat" class="navbar-brand-image">
+      <h1 class="navbar-brand d-none-navbar-horizontal pe-0 pe-md-3">
+        <a href="{{ route('author.home') }}">
+          <img src="/logo1.png" width="110" height="32" alt="Desa Toruakat" class="navbar-brand-image" style="width: 40px;height:auto;">
         </a>
+        Desa Toruakat
       </h1>
       <div class="navbar-nav flex-row order-md-last">
         <div class="nav-item d-none d-md-flex me-3">
@@ -101,10 +102,7 @@
                     <a class="dropdown-item" href="{{ route('author.data-desa.agama') }}">
                       Agama
                     </a>
-                    <a class="dropdown-item" href="/back/buttons.html">
-                      Buttons
-                    </a>
-                    <div class="dropend">
+                    {{-- <div class="dropend">
                       <a class="dropdown-item dropdown-toggle" href="#sidebar-cards" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
                         Cards
                         <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
@@ -118,7 +116,7 @@
                           <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
                         </a>
                       </div>
-                    </div>
+                    </div> --}}
                 </div>
               </div>
             </li>

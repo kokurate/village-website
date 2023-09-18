@@ -10,7 +10,7 @@
         <div class="col-lg">
           <div class="container-tight">
             <div class="text-center mb-4">
-              <a href="." class="navbar-brand navbar-brand-autodark"><img src="/back/static/logo.svg" height="36" alt=""></a>
+              <a href="{{ route('home') }}" class="navbar-brand navbar-brand-autodark"><img src="/logo1.png" height="36" alt="Logo" style="width:75px;height:auto;"></a>
             </div>
             <div class="card card-md">
               <div class="card-body">

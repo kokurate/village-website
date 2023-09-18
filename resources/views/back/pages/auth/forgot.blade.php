@@ -7,7 +7,7 @@
 <div class="page page-center">
     <div class="container container-tight py-4">
       <div class="text-center mb-4">
-        <a href="." class="navbar-brand navbar-brand-autodark"><img src="/back/static/logo.svg" height="36" alt=""></a>
+        <a href="{{ route('home') }}" class="navbar-brand navbar-brand-autodark"><img src="/logo1.png" height="36" alt="" style="width:70px;height:auto;"></a>
       </div>
       @livewire('forgot-form')
       <div class="text-center text-muted mt-3">

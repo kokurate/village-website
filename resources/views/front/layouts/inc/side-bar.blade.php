@@ -1,7 +1,8 @@
 <div class="col-lg-4">
     <!-- Aparatur desa start-->
-    <div class="mb-2 col-12 text-center">
-        <h3>Aparatur Desa</h3>
+    <div class="mb-2 col-lg-12 text-center mt-0">
+        <h5><i class="fa fa-users" aria-hidden="true"></i>
+            Aparatur Desa</h5>
         <div id="portraitCarousel" class="carousel slide mb-5" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -15,7 +16,7 @@
                 @forelse(\App\Models\Aparatur::all() as $index => $data)
                     <div class="carousel-item @if($index === 0) active @endif">
                         {{-- <img class="d-block w-100" src="{{ $data->image }}" alt="{{ $data->nama }}"> --}}
-                        <img src="{{ $data->image }}" alt="" style="width:100%;height:100%;border-radius:10%;border:2px solid;">
+                        <img src="{{ $data->image }}" alt="" style="width:300px;height:auto;border-radius:10%;border:1px solid #FC3F00; object-fit: cover;">
                         <div class="carousel-caption d-none d-md-block">
                             <h5 class="" style="background-color:white; "><u><strong>{{ $data->nama }}</strong></u></h5>
                             <p class="" style="background-color:white; "><strong>{{ $data->jabatan }}</strong></p>
@@ -39,9 +40,23 @@
     </div>
     <!-- Aparatur desa end-->
 
+    <!-- Maps -->
+        <div class="col-lg-12 mb-5">
+            <h5 class="d-flex justify-content-center text-center"><i class="fa fa-users" aria-hidden="true"></i>
+                Peta Wilayah Desa</h5>
+                <div class="d-flex justify-content-center text-center">
+
+                    <iframe width="345" height="250"  src="https://www.openstreetmap.org/export/embed.html?bbox=124.02783393859865%2C0.5973707688085588%2C124.0935802459717%2C0.6488661346824502&amp;layer=mapnik&amp;marker=0.6231185146655273%2C124.06070709228516" style="border: 1px solid black"></iframe>
+                </div>
+            <br/><small><a class="genric-btn danger radius d-flex justify-content-center text-center" href="https://www.openstreetmap.org/?mlat=0.6231&amp;mlon=124.0607#map=14/0.6231/124.0607&amp;layers=G">
+                Buka Peta</a>
+            </small>
+        </div>
+    <!-- End Maps -->
+
     <div class="blog_right_sidebar">
 
-        <div class="trand-right-single d-flex">
+        {{-- <div class="trand-right-single d-flex">
             <div class="trand-right-img">
                 <img src="/front/assets/img/trending/right1.jpg" alt="">
             </div>
@@ -58,7 +73,7 @@
                 <span class="color3">sea beach</span>
                 <h4><a href="details.html">Welcome To The Best Model Winner Contest</a></h4>
             </div>
-        </div>
+        </div> --}}
 
 
 

@@ -1,6 +1,6 @@
 <footer>
     <!-- Footer Start-->
-    <div class="footer-area footer-padding fix">
+    {{-- <div class="footer-area footer-padding fix">
          <div class="container">
              <div class="row d-flex justify-content-between">
                  <div class="col-xl-5 col-lg-5 col-md-7 col-sm-12">
@@ -8,7 +8,7 @@
                          <div class="single-footer-caption">
                              <!-- logo -->
                              <div class="footer-logo">
-                                 <a href="index.html"><img src="/front/assets/img/logo/logo2_footer.png" alt=""></a>
+                                 <a href="/"><img src="/logo1.png" alt="Logo" style="width: 75px;height:auto;"></a>
                              </div>
                              <div class="footer-tittle">
                                  <div class="footer-pera">
@@ -67,7 +67,7 @@
                  </div>
              </div>
          </div>
-     </div>
+     </div> --}}
     <!-- footer-bottom aera -->
     <div class="footer-bottom-area">
         <div class="container">
@@ -83,9 +83,11 @@
                      <div class="col-lg-6">
                          <div class="footer-menu f-right">
                              <ul>                             
-                                 <li><a href="#">Terms of use</a></li>
-                                 <li><a href="#">Privacy Policy</a></li>
-                                 <li><a href="#">Contact</a></li>
+                                 <li><a href="#">Maintained by</a></li>
+                                 <li><a href="https://kokurate.github.io" target="__blank">Kokurate</a></li>
+                                 <li><a href="#"></a></li>
+                                 <li><a href="#"></a></li>
+                                 <li><a href="#"></a></li>
                              </ul>
                          </div>
                      </div>

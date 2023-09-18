@@ -29,6 +29,7 @@
     
        <!-- Sweet Alert 2 -->
        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+        <link rel="stylesheet" href="{{ asset('my/back.css') }}">
 
      @yield('css')
      @stack('css')
