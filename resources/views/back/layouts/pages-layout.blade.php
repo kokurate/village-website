@@ -21,6 +21,9 @@
     <link href="/back/dist/css/demo.min.css?1684106062" rel="stylesheet"/>
     <!-- IjaboCropTool -->
     <link rel="stylesheet" href="{{ asset('back/dist/libs/ijaboCropTool/ijaboCropTool.min.css') }}">
+      <!-- Font Awesome 4.7 -->
+      <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+      
      <!-- Toastr Cdn-->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
@@ -109,7 +112,7 @@
 
       </script>
 
-    @stack('js')
     @yield('js')
+    @stack('js')
   </body>
 </html>

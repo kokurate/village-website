@@ -1,7 +1,17 @@
 @extends('back.layouts.pages-layout')
 @section('pageTitle', isset($pageTitle) ? $pageTitle : 'Home')
-@section('css') @livewireStyles
-@section('js')  @livewireScripts
+@section('css')
+  
+<!-- Data Table-->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+  @livewireStyles 
+@endsection
+@section('js')  
+
+<!-- Data Table-->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+  @livewireScripts 
+@endsection
 @section('pageHeader')
 
 <div class="page-header d-print-none">
@@ -81,7 +91,7 @@
               </h2>
               <div id="collapse-1" class="accordion-collapse collapse" data-bs-parent="#accordion-example">
                 <div class="accordion-body pt-0">
-                  
+                  <hr>
                   @livewire('author-add-aparatur-form')
 
                   <hr>
@@ -93,12 +103,16 @@
             <div class="accordion-item">
               <h2 class="accordion-header" id="heading-2">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="false">
-                  Surat Online
+                  <h3>Surat Online</h3>
                 </button>
               </h2>
               <div id="collapse-2" class="accordion-collapse collapse" data-bs-parent="#accordion-example">
                 <div class="accordion-body pt-0">
-                 <strong>Surat Online Section</strong>
+                  <hr>
+                  <h2 class="mb-4 text-center">Daftar Pengajuan Surat Online</h2>
+                  
+                        @livewire('author-home-surat-online')
+                 
                 </div>
               </div>
             </div>
@@ -157,5 +171,24 @@
 
   </script>
   @endforeach
+
+  <script>
+    
+        // Data Table 
+        new DataTable('#surat_online', {
+            scrollX: true,
+            order: [[1, 'desc']], // Use 'desc' for descending order
+            // columnDefs: [{
+            //     targets: 6, // Adjust the column index to match the position of "Tanggal Pengajuan"
+            //     visible: false
+            // }]
+        });
+
+        // Detail Modal
+        window.addEventListener('showDetailModal', function(e){
+            $('#detail_modal').modal('show');
+        });
+
+  </script>
 
 @endpush
