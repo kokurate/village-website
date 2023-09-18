@@ -9,6 +9,33 @@ use Illuminate\Support\Facades\File;
 class AuthorAparaturDesa extends Component
 {
 
+    public $nama, $jabatan;
+
+    public function AddAparatur(){
+        $this->validate([
+            'nama' => 'required',
+            'jabatan' => 'required',
+        ],[
+            'nama.required' => ':attribute harus diisi',
+            'jabatan.required' => ':attribute harus diisi',
+        ]);
+
+        $aparatur = new Aparatur();
+        $aparatur->nama = $this->nama;
+        $aparatur->jabatan = $this->jabatan;
+        $saved = $aparatur->save();
+
+        if($saved){
+            $this->dispatchBrowserEvent('success', ['message' => 'Aparatur berhasil ditambahkan.']);
+            // $this->dispatchBrowserEvent('2sreload');
+        }else{
+            $this->dispatchBrowserEvent('error', ['message' => 'Something went wrong.']);
+
+        }
+    
+
+    }
+
     protected $listeners = [
         'deleteAparaturAction',
     ];

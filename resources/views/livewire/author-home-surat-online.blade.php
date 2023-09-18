@@ -16,13 +16,13 @@
             <tr>
                 <td class="text-muted">
                     <div class="btn-group">
-                        <a href="#" wire:click.prevent='editAgama({{ $data->id }})'>
+                        {{-- <a href="#" wire:click.prevent='edit({{ $data->id }})'>
                             <i class="fa fa-check text-success" aria-hidden="true"></i>
                         </a>&nbsp;
                         <a href="#">
                             <i class="fa fa-times text-danger" aria-hidden="true"></i>
 
-                        </a>&nbsp;
+                        </a>&nbsp; --}}
                         <a href="#" wire:click.prevent='detail({{ $data->id }})'>
                             <i class="fa fa-info-circle" aria-hidden="true"></i>
 
@@ -54,6 +54,8 @@
                         <p class="">Nama : <strong>{{ $detail->nama }}</strong></p>
                         <p class="">Email : <strong>{{ $detail->email }}</strong></p>
                         <p class="">NIK : <strong>{{ $detail->nik }}</strong></p>
+                        <hr>
+                        <p class="">Pesan : <strong>{{ $detail->pesan }}</strong></p>
                     @else
                         <p>Data not available.</p>
                     @endif
@@ -61,6 +63,11 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                    @if($detail)
+                    <a class="btn btn-success" wire:click.prevent='selesai({{ $detail->id }})'>Selesai</a>
+                    @else
+                    <p>No data</p>
+                    @endif
                 </div>
             </div>
         </div>

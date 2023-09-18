@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class VisitorSuratOnlineForm extends Component
 {
-    public $nama, $nik, $jenis_surat, $email, $pesan;
+    public $nama, $nik, $jenis_surat, $email, $pesan, $status;
 
     public function addPermohonan(){
         $this->validate([
@@ -37,8 +37,15 @@ class VisitorSuratOnlineForm extends Component
         $saved = $data->save();
 
         if($saved){
-            $this->dispatchBrowserEvent('success',['message' => 'Permohonan Berhasil Diajukan']);
-            $this->dispatchBrowserEvent('2sreload');
+            $this->dispatchBrowserEvent('success',['message' => 'Permohonan Berhasil Diajukan. Silahkan tunggu pemberitahuan melalui email']);
+            session()->flash('success','Permohonan Berhasil Diajukan. Silahkan tunggu pemberitahuan melalui email');
+            $this->status = null;
+            $this->nama = null;
+            $this->nik = null;
+            $this->email = null;
+            $this->jenis_surat = null;
+            $this->pesan = null;
+            // $this->dispatchBrowserEvent('2sreload');
         }else{
             $this->dispatchBrowserEvent('error',['Something went wrong']);
         }

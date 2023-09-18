@@ -91,10 +91,7 @@
               </h2>
               <div id="collapse-1" class="accordion-collapse collapse" data-bs-parent="#accordion-example">
                 <div class="accordion-body pt-0">
-                  <hr>
-                  @livewire('author-add-aparatur-form')
 
-                  <hr>
 
                   @livewire('author-aparatur-desa')
                 </div>
