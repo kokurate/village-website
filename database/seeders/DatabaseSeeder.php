@@ -24,15 +24,15 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        // $this->call(TypeSeeder::class);
-        // $this->call(UserSeeder::class);
-        // $this->call(DataDesaSeeder::class);
-        // $this->call(WilayahAdministratifSeeder::class);
-        // $this->call(TingkatPendidikanSeeder::class);
-        // $this->call(PekerjaanSeeder::class);
-        // $this->call(JenisKelaminSeeder::class);
-        // $this->call(GolonganUmurSeeder::class);
-        // $this->call(AgamaSeeder::class);
+        $this->call(TypeSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(DataDesaSeeder::class);
+        $this->call(WilayahAdministratifSeeder::class);
+        $this->call(TingkatPendidikanSeeder::class);
+        $this->call(PekerjaanSeeder::class);
+        $this->call(JenisKelaminSeeder::class);
+        $this->call(GolonganUmurSeeder::class);
+        $this->call(AgamaSeeder::class);
         $this->call(JenisSuratSeeder::class);
 
     }

@@ -16,19 +16,19 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'Kokurate',
-            'email' => 'kokurate@dev.com',
+            'name' => 'root',
+            'email' => 'root@dev.com',
             'password' => bcrypt('password'),
-            'username' => 'kokurate',
+            'username' => 'root',
             'type' => 1,
             'direct_publish' => 1,
         ]);
         
         User::create([
-            'name' => 'bubble',
-            'email' => 'bubble@dev.com',
+            'name' => 'user',
+            'email' => 'user@dev.com',
             'password' => bcrypt('password'),
-            'username' => 'bubble',
+            'username' => 'user',
             'type' => 2,
             // 'direct_publish' => 1,
         ]);
