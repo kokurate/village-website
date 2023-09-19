@@ -8,7 +8,8 @@
 <div class="section-tittle mb-30">
     <h3>Post Terbaru</h3>
 </div>
-<section class="blog_area section-padding pt-0 mt-0">
+{{-- <section class="blog_area section-padding pt-0 mt-0"> --}}
+<section class="blog_area pt-0 mt-0">
     <div class="container">
         <div class="row">
             <div class="col-lg mb-5 mb-lg-0">

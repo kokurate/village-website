@@ -1,4 +1,5 @@
 @extends('front.layouts.pages-layout')
+@section('side-bar') @include('front.layouts.inc.side-bar') @endsection
 @section('pageTitle', isset($pageTitle) ? $pageTitle : 'Home')
 {{-- @section('latest-post') @include('front.layouts.inc.header-latest-post') @endsection --}}
 

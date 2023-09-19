@@ -174,7 +174,7 @@
         // Data Table 
         new DataTable('#surat_online', {
             scrollX: true,
-            order: [[1, 'desc']], // Use 'desc' for descending order
+            order: [[1, 'asc']], // Use 'desc' for descending order
             // columnDefs: [{
             //     targets: 6, // Adjust the column index to match the position of "Tanggal Pengajuan"
             //     visible: false

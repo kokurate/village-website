@@ -58,14 +58,18 @@
                             <div class="trending-tittle">
                                 {{-- <strong>Trending now</strong> --}}
                                 <!-- <p>Rem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
-
+                                <div class="col ms-auto d-print-none mb-0">
+                                    <form action="{{ route('search_posts') }}">
+                                        <input class="form-control"  id="search-query" name="query" value="{{ Request('query') }}" type="search" placeholder="Masukkan Keywords">
+                                    </form>
+                                </div>
 
                             </div>
                         </div>
                     </div>
                     <div class="row">
                             @yield('one-page')
-                        <div class="col-lg-8">
+                        <div class="col-lg-8 mt-4">
                             @yield('latest-post')
                             {{--
                             <hr> --}}
@@ -162,6 +166,125 @@
 
     </script>
     @stack('js')
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script>
+        // Data retrieved from https://gs.statcounter.com/browser-market-share#monthly-202201-202201-bar
+
+        // Create the chart
+        Highcharts.chart('jumlah_penduduk', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        align: 'center',
+        text: 'Jumlah Penduduk'
+    },
+    subtitle: {
+        align: 'center',
+        text: 'Desa Toruakat'
+    },
+    accessibility: {
+        announceNewData: {
+            enabled: true
+        }
+    },
+    xAxis: {
+        type: 'category'
+    },
+    yAxis: {
+        title: {
+            text: 'Jumlah'
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+                format: '{point.y}' // Display the actual numeric value
+            }
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b><br/>' // Display the actual numeric value
+    },
+    series: [
+        {
+            name: 'Jumlah',
+            colorByPoint: true,
+            data: [
+                @foreach(\App\Models\JenisKelamin::all() as $data)
+                    {
+                        name: '{{ $data->jenis_kelamin }}',
+                        y: {{ $data->jumlah }},
+                    },
+                @endforeach
+                    {
+                        name: 'Total',
+                        y: {{ \App\Models\JenisKelamin::selectRaw('SUM(jenis_kelamin + jumlah) as total_sum')
+                                                                ->first()->total_sum }},
+                    },
+            ]
+        }
+    ]
+});
+
+// Tanggal
+    function tampilkanTanggal() {
+        const sekarang = new Date();
+        const tanggalDiv = document.getElementById('tanggal');
+
+        // Daftar nama hari dalam bahasa Indonesia
+        const namaHari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        
+        // Daftar nama bulan dalam bahasa Indonesia
+        const namaBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+        const hariIni = namaHari[sekarang.getDay()];
+        const tanggalSekarang = sekarang.getDate();
+        const bulanSekarang = namaBulan[sekarang.getMonth()];
+        const tahunSekarang = sekarang.getFullYear();
+
+        // Tampilkan tanggal dalam format yang diinginkan
+        const tanggalFormat = `${hariIni}, ${tanggalSekarang} ${bulanSekarang} ${tahunSekarang}`;
+        tanggalDiv.textContent = 'Hari ini : ' + tanggalFormat;
+    }
+
+    // Panggil fungsi tampilkanTanggal untuk menampilkan tanggal saat halaman dimuat
+    tampilkanTanggal();
+
+
+    // Tampilkan jam
+    function tampilkanJam() {
+    const sekarang = new Date();
+    const jamDiv = document.getElementById('jam');
+
+    // Tampilkan jam lokal dalam format 24 jam
+    const jam = sekarang.getHours();
+    const menit = sekarang.getMinutes();
+    const detik = sekarang.getSeconds();
+    const jamFormat = `${jam.toString().padStart(2, '0')}:${menit.toString().padStart(2, '0')}:${detik.toString().padStart(2, '0')}`;
+    jamDiv.textContent = 'Jam : ' + jamFormat;
+
+        // Schedule the next update in 1 second
+        setTimeout(tampilkanJam, 1000);
+    }
+
+    // Panggil fungsi tampilkanJam untuk menampilkan jam saat halaman dimuat
+    tampilkanJam();
+
+    </script>
+
 
 </body>
 

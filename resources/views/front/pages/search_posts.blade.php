@@ -1,12 +1,12 @@
 @extends('front.layouts.pages-layout')
 @section('pageTitle', isset($pageTitle) ? $pageTitle : 'Pencarian')
-@section('latest-post') @include('front.layouts.inc.header-latest-post') @endsection
+{{-- @section('latest-post') @include('front.layouts.inc.header-latest-post') @endsection --}}
 @section('side-bar') @include('front.layouts.inc.side-bar') @endsection
 @section('css')
 @section('js')
 @section('content')
 
-<section class="whats-news-area pt-50 pb-20">
+<section class="whats-news-area pt-0 pb-20">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
