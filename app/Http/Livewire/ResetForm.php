@@ -13,6 +13,17 @@ class ResetForm extends Component
 {
     public $email, $token, $new_password, $confirm_new_password;
 
+    public $show_password =  false;
+    public $confirm_show_password =  false;
+
+    public function show_password(){
+        $this->show_password = !$this->show_password;
+    }
+
+    public function confirm_show_password(){
+        $this->confirm_show_password = !$this->confirm_show_password;
+    }
+
     public function mount()
     {
         $this->email = request()->email;

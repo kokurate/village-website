@@ -10,10 +10,15 @@ class LoginForm extends Component
 {
     public $login_id, $password;
     public $returnUrl;
+    public $show_password =  false;
 
     public function mount()
     {
         $this->returnUrl = request()->returnUrl;
+    }
+
+    public function show_password(){
+        $this->show_password = !$this->show_password;
     }
 
     public function LoginHandler()
