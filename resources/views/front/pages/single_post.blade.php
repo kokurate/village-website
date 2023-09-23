@@ -9,7 +9,7 @@
 <div class="posts-list">
     <div class="single-post">
         <div class="feature-img">
-        <img class="img-fluid" src="/storage/images/post_images/{{ $post->featured_image }}" alt="" style="width: 100%">
+        <img class="img-fluid" src="{{ $post->featured_image }}" alt="" style="width: 100%">
         </div>
         <div class="blog_details">
         <h2>{{ $post->post_title }}</h2>

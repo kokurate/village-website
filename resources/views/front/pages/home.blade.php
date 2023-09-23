@@ -18,7 +18,7 @@
                     @foreach(latest_6_post() as $latest_post)
                     <article class="blog_item">
                         <div class="blog_item_img">
-                            <img class="card-img rounded-0" src="/storage/images/post_images/{{ $latest_post->featured_image }}" alt="" style="max-height: 200px;object-fit: cover;">
+                            <img class="card-img rounded-0" src="{{ $latest_post->featured_image }}" alt="" style="max-height: 200px;object-fit: cover;">
                             <a href="#" class="blog_item_date">
                                 {{ date_formatter($latest_post->created_at) }}
                         </div>
@@ -31,7 +31,7 @@
                             <p>{!! substr($latest_post->post_content,0,250) !!}...</p>
                             <ul class="blog-info-link">
                                 <li><a href="#"><i class="fa fa-user"></i>{{ $latest_post->author->name }}</a></li>
-                                <li><a href="#"><i class="fa fa-list"></i> {{ $latest_post->subcategory->subcategory_name }}</a></li>
+                                <li><a href="{{ route('category_posts', $latest_post->subcategory->slug) }}"><i class="fa fa-list"></i> {{ $latest_post->subcategory->subcategory_name }}</a></li>
                             </ul>
                         </div>
                     </article>

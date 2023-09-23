@@ -127,7 +127,7 @@
                     @if(recommended_posts())
                     @foreach(recommended_posts() as $item)
                     <div class="media post_item">
-                        <img src="/storage/images/post_images/{{ $item->featured_image }}"
+                        <img src="{{ $item->featured_image }}"
                             alt="post" style="width: 100px;height:75px;object-fit: cover;">
                         <div class="media-body">
                             <a href="{{ route('read_post', $item->post_slug) }}">
@@ -144,7 +144,7 @@
                     @if(latest_sidebar_posts())
                     @foreach(latest_sidebar_posts() as $item)
                     <div class="media post_item">
-                        <img src="/storage/images/post_images/{{ $item->featured_image }}"
+                        <img src="{{ $item->featured_image }}"
                             alt="post" style="width: 100px;height:75px;object-fit: cover;">
                         <div class="media-body">
                             <a href="{{ route('read_post', $item->post_slug) }}">

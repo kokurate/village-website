@@ -45,4 +45,13 @@ class Post extends Model
         return $this->belongsTo(User::class,'author_id','id');
     }
 
+    public function getFeaturedImageAttribute($value)
+    {
+        if($value){
+            return asset('storage/images/post_images/'.$value);
+        }else{
+            return asset('storage/images/post_images/default.png');
+        }
+    }
+
 }

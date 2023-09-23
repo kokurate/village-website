@@ -94,7 +94,7 @@
                         <span class="text-danger error-text featured_image_error"></span>
                     </div>
                     <div class="image_holder mb-2" style="max-width: 250px">
-                        <img src="{{ $post->featured_image ? asset('storage/images/post_images/' . $post->featured_image) : '' }}" alt="" class="img-thumbnail" id="image-previewer">
+                        <img src="{{ $post->featured_image ? asset($post->featured_image) : '' }}" alt="" class="img-thumbnail" id="image-previewer">
                     </div>
                     <button type="submit" class="btn btn-primary">Perbarui Post</button>
                 </div>

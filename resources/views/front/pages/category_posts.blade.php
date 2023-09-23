@@ -29,7 +29,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="/storage/images/post_images/{{ $post->featured_image }}" alt="" style="width: 100%;height:350px;object-fit: cover;">
+                                                    <img src="{{ $post->featured_image }}" alt="" style="width: 100%;height:350px;object-fit: cover;">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">{{ $post->subcategory->subcategory_name }}</span>

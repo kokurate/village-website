@@ -59,7 +59,7 @@
                         <div class="row g-0">
                         <div class="col-auto">
                             <div class="card-body">
-                            <div class="avatar avatar-xl" style="background-image: url(/storage/images/post_images/{{ $post->featured_image }})"></div>
+                            <div class="avatar avatar-xl" style="background-image: url({{ $post->featured_image }})"></div>
                             </div>
                         </div>
                         <div class="col">

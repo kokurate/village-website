@@ -93,13 +93,14 @@ class AuthorController extends Controller
             'post_title' => 'required',
             'post_content' => 'required',
             'post_category' => 'required|exists:sub_categories,id',
-            'featured_image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            // 'featured_image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'featured_image' => 'image|mimes:jpeg,jpg,png|max:2048',
         ],[
             'post_title.required' => 'Judul tidak boleh kosong',
             'post_content.required' => 'Content tidak boleh kosong',
             'post_category.required' => 'Kategori harus dipilih',
             'post_category.exists' => 'Kategori tidak terdaftar',
-            'featured_image.required' => 'Gambar tidak boleh kosong',
+            // 'featured_image.required' => 'Gambar tidak boleh kosong',
             'featured_image.image' => 'Format gambar tidak benar',
             'featured_image.mimes' => 'Hanya boleh tipe file jpeg,jpg,png',
             'featured_image.max' => 'Maksimal 2mb',
@@ -130,6 +131,21 @@ class AuthorController extends Controller
 
             }else{
                 return response()->json(['code' => 3 , 'msg' => 'Ada yang salah saat proses unggah image']);
+            }
+
+
+        }else{
+            $post = new Post();
+            $post->author_id = auth()->id();
+            $post->category_id = $request->post_category;
+            $post->post_title = $request->post_title;
+            $post->post_content = $request->post_content;
+            $saved = $post->save();
+
+            if($saved){
+                return response()->json(['code' => 1 , 'msg' => 'Post baru telah berhasil ditambahkan']);
+            }else{
+                return response()->json(['code' => 3 , 'msg' => 'Ada yang salah saat menyimpan data post']);
             }
 
 
