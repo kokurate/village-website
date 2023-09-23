@@ -31,6 +31,8 @@ class Categories extends Component
         $this->category_name = null;
         $this->subcategory_name = null;
         $this->parent_category = null;
+        $this->updateCategoryMode = false;
+        $this->updateSubCategoryMode = false;
     }
     
 
