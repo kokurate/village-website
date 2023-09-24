@@ -12,11 +12,11 @@
                 <div class="page-pretitle">
                     <ol class="breadcrumb" aria-label="breadcrumbs">
                         <li class="breadcrumb-item"><a href="{{ route('author.home') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><a href="#">Tambah Post</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="#">Edit Post</a></li>
                     </ol>
                 </div>
                 <h2 class="page-title">
-                    Tambahkan Postingan Baru
+                    Edit Post
                 </h2>
             </div>
         </div>
