@@ -27,11 +27,11 @@ if (!function_exists('date_formatter')) {
 /**
  * STRIP WORDS
  */
-// if(!function_exists('words')){
-//     function words($value, $words = 15, $end="..."){
-//         return Str::words(strip_tags($value), $words, $end);
-//     }
-// }
+if(!function_exists('words')){
+    function words($value, $words = 15, $end="..."){
+        return Str::words(strip_tags($value), $words, $end);
+    }
+}
 
 
 /**

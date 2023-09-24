@@ -28,7 +28,7 @@
                                 <h2>{{ $latest_post->post_title }}</h2>
                             </a>
                             {{-- <p>{!! substr($latest_post->post_content,0,250) !!}...</p> --}}
-                            <p>{!! substr($latest_post->post_content,0,250) !!}...</p>
+                            <p>{!! Str::ucfirst(words($latest_post->post_content,35)) !!}</p>
                             <ul class="blog-info-link">
                                 <li><a href="#"><i class="fa fa-user"></i>{{ $latest_post->author->name }}</a></li>
                                 <li><a href="{{ route('category_posts', $latest_post->subcategory->slug) }}"><i class="fa fa-list"></i> {{ $latest_post->subcategory->subcategory_name }}</a></li>
