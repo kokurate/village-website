@@ -32,6 +32,7 @@
                             <ul class="blog-info-link">
                                 <li><a href="#"><i class="fa fa-user"></i>{{ $latest_post->author->name }}</a></li>
                                 <li><a href="{{ route('category_posts', $latest_post->subcategory->slug) }}"><i class="fa fa-list"></i> {{ $latest_post->subcategory->subcategory_name }}</a></li>
+                                <li><a href="#"><i class="fa fa-eye"></i> {{ $latest_post->views }} kali dilihat</a></li>
                             </ul>
                         </div>
                     </article>

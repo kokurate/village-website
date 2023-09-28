@@ -33,7 +33,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">{{ $post->subcategory->subcategory_name }}</span>
-                                                    <span class="text-muted">{{ date_formatter($post->created_at) }} | {{ $post->author->name }}</span>
+                                                    <span class="text-muted">{{ date_formatter($post->created_at) }} | {{ $post->author->name }} | <i class="fa fa-eye"></i> {{ $post->views }} kali</span>
                                                     <h4><a href="{{ route('read_post', $post->post_slug) }}">{{ substr($post->post_title, 0, 50) }}...</a></h4>
                                                 </div>
                                             </div>
