@@ -115,10 +115,10 @@
                     <button class="nav-link genric-btn danger-border small" id="nav-terbaru-tab"
                         data-toggle="tab" data-target="#nav-terbaru" type="button" role="tab"
                         aria-controls="nav-terbaru" aria-selected="false">Terbaru</button>
-                    {{-- <button class="nav-link genric-btn danger-border small"
+                    <button class="nav-link genric-btn danger-border small"
                         id="nav-contact-tab" data-toggle="tab" data-target="#nav-contact"
                         type="button" role="tab" aria-controls="nav-contact"
-                        aria-selected="false" style="border: none;">Contact</button> --}}
+                        aria-selected="false" style="border: none;">Populer</button>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -133,7 +133,8 @@
                             <a href="{{ route('read_post', $item->post_slug) }}">
                                 <h3>{{ substr($item->post_title , 0 , 40) }}...</h3>
                             </a>
-                            <p>{{ date_formatter($item->created_at) }}</p>
+                            <p class="text-muted" style="font-size: 11px;"><i class="fa fa-clock"></i> {{ date_formatter($item->created_at) }}</p>
+                            <p class="text-muted" style="font-size: 11px;"><i class="fa fa-eye"></i> {{ $item->views }} kali</p>
                         </div>
                     </div>
                     @endforeach
@@ -150,14 +151,32 @@
                             <a href="{{ route('read_post', $item->post_slug) }}">
                                 <h3>{{ substr($item->post_title , 0 , 40) }}...</h3>
                             </a>
-                            <p>{{ date_formatter($item->created_at) }}</p>
+                            <p class="text-muted" style="font-size: 11px;"><i class="fa fa-clock"></i> {{ date_formatter($item->created_at) }}</p>
+                            <p class="text-muted" style="font-size: 11px;"><i class="fa fa-eye"></i> {{ $item->views }} kali</p>
                         </div>
                     </div>
                     @endforeach
                     @endif
                 </div>
                 <div class="tab-pane fade" id="nav-contact" role="tabpanel"
-                    aria-labelledby="nav-contact-tab">test 3</div>
+                    aria-labelledby="nav-contact-tab">
+                    @if(latest_sidebar_posts())
+                    @foreach(popular_posts() as $item)
+                    <div class="media post_item">
+                        <img src="{{ $item->featured_image }}"
+                            alt="post" style="width: 100px;height:75px;object-fit: cover;">
+                        <div class="media-body">
+                            <a href="{{ route('read_post', $item->post_slug) }}">
+                                <h3>{{ substr($item->post_title , 0 , 40) }}...</h3>
+                            </a>
+                            <p class="text-muted" style="font-size: 11px;"><i class="fa fa-clock"></i> {{ date_formatter($item->created_at) }}</p>
+                            <p class="text-muted" style="font-size: 11px;"><i class="fa fa-eye"></i> {{ $item->views }} kali</p>
+                        </div>
+                    </div>
+                    @endforeach
+                    @endif
+                
+                </div>
             </div>
 
 

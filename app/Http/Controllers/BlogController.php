@@ -11,6 +11,8 @@ use App\Models\Post;
 use App\Models\SubCategory;
 use App\Models\TingkatPendidikan;
 use App\Models\WilayahAdministratif;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Str;
 
 class BlogController extends Controller
@@ -78,6 +80,23 @@ class BlogController extends Controller
         if(!$slug){
             return abort(404);
         }else{
+
+            // // +1 views every user read a post
+            // Post::where('post_slug', $slug)->increment('views');
+
+             // Check if the view cookie exists.
+            $cookieName = 'post_viewed_' . $slug;
+
+            if (!Cookie::has($cookieName)) {
+                // Cookie doesn't exist; increment view count and set the cookie.
+
+                Post::where('post_slug', $slug)->increment('views');
+
+                // Set the cookie to prevent further incrementing. Delete Cookie after 60 minutes
+                Cookie::queue($cookieName, true, 60);
+            }
+
+
 
             $post = Post::where('post_slug', $slug)
                             ->with('subcategory')

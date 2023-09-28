@@ -128,4 +128,18 @@ if(!function_exists('latest_sidebar_posts')){
     }
 }
 
+/**
+ * SIDEBAR POPULAR POST
+ */
+
+if(!function_exists('popular_posts')){
+    function popular_posts(){
+        return Post::with('author')
+        ->with('subcategory')
+        ->limit(5)
+        ->orderBy('views', 'desc') // Order by views in descending order to get the highest views first
+        ->get();
+    }
+}
+
 ?>

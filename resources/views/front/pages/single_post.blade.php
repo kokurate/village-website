@@ -17,6 +17,7 @@
             <li><a href="#"><i class="fa fa-user"></i> {{ $post->author->name }}</a></li>
             <li><a href="{{ route('category_posts', $post->subcategory->slug) }}"><i class="fa fa-list"></i> {{ $post->subcategory->subcategory_name }}</a></li>
             <li><a href="#"><i class="fa fa-calendar"></i> {{ date_formatter($post->created_at) }}</a></li>
+            <li><a href="#"><i class="fa fa-eye"></i> {{ $post->views }} kali dilihat</a></li>
         </ul>
         {!! $post->post_content !!}
         </div>
