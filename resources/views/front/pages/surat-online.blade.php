@@ -1,6 +1,5 @@
 @extends('front.layouts.pages-layout')
-@section('pageTitle', isset($pageTitle) ? $pageTitle : 'Home')
-@section('latest-post') @include('front.layouts.inc.header-latest-post') @endsection
+@section('pageTitle', isset($pageTitle) ? $pageTitle : 'Surat Online')
 @push('css') 
     @livewireStyles
                <!-- Toastr Cdn-->
@@ -38,7 +37,7 @@
      
         @livewire('visitor-surat-online-form')
           
-<br><br><br><br><br><br><br>
+<br>
 
 </div>
 

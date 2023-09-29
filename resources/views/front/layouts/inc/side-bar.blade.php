@@ -108,17 +108,17 @@
             <nav>
                 <h3 class="">Archive</h3>
                 <div class="nav nav-tabs my-2" id="nav-tab" role="tablist">
-                    <button class="nav-link genric-btn danger-border small active"
+                    <button class="nav-link genric-btn danger circle small active"
                         id="nav-acak-tab" data-toggle="tab" data-target="#nav-acak"
                         type="button" role="tab" aria-controls="nav-acak"
-                        aria-selected="true">Acak</button>
-                    <button class="nav-link genric-btn danger-border small" id="nav-terbaru-tab"
+                        aria-selected="true" style="border: none; border-bottom:1px solid #FC3F00;">Acak</button>
+                    <button class="nav-link genric-btn danger circle small" id="nav-terbaru-tab"
                         data-toggle="tab" data-target="#nav-terbaru" type="button" role="tab"
-                        aria-controls="nav-terbaru" aria-selected="false">Terbaru</button>
-                    <button class="nav-link genric-btn danger-border small"
+                        aria-controls="nav-terbaru" aria-selected="false" style="border: none;border-bottom:1px solid #FC3F00;">Terbaru</button>
+                    <button class="nav-link genric-btn danger circle small"
                         id="nav-contact-tab" data-toggle="tab" data-target="#nav-contact"
                         type="button" role="tab" aria-controls="nav-contact"
-                        aria-selected="false" style="border: none;">Populer</button>
+                        aria-selected="false" style="border: none; border-bottom:1px solid #FC3F00;">Populer</button>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -134,7 +134,7 @@
                                 <h3>{{ substr($item->post_title , 0 , 40) }}...</h3>
                             </a>
                             <p class="text-muted" style="font-size: 11px;"><i class="fa fa-clock"></i> {{ date_formatter($item->created_at) }}</p>
-                            <p class="text-muted" style="font-size: 11px;"><i class="fa fa-eye"></i> {{ $item->views }} kali</p>
+                            <p class="text-muted" style="font-size: 11px;"><i class="fa fa-eye"></i> {{ $item->views }} kali dilihat</p>
                         </div>
                     </div>
                     @endforeach
@@ -152,7 +152,7 @@
                                 <h3>{{ substr($item->post_title , 0 , 40) }}...</h3>
                             </a>
                             <p class="text-muted" style="font-size: 11px;"><i class="fa fa-clock"></i> {{ date_formatter($item->created_at) }}</p>
-                            <p class="text-muted" style="font-size: 11px;"><i class="fa fa-eye"></i> {{ $item->views }} kali</p>
+                            <p class="text-muted" style="font-size: 11px;"><i class="fa fa-eye"></i> {{ $item->views }} kali dilihat</p>
                         </div>
                     </div>
                     @endforeach
@@ -170,7 +170,7 @@
                                 <h3>{{ substr($item->post_title , 0 , 40) }}...</h3>
                             </a>
                             <p class="text-muted" style="font-size: 11px;"><i class="fa fa-clock"></i> {{ date_formatter($item->created_at) }}</p>
-                            <p class="text-muted" style="font-size: 11px;"><i class="fa fa-eye"></i> {{ $item->views }} kali</p>
+                            <p class="text-muted" style="font-size: 11px;"><i class="fa fa-eye"></i> {{ $item->views }} kali dilihat</p>
                         </div>
                     </div>
                     @endforeach
