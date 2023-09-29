@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->string('jenis_surat')->nullable();
             $table->string('nama')->nullable();
-            $table->integer('nik')->nullable();
+            $table->string('nik')->nullable();
             $table->string('email')->nullable();
             $table->string('pesan')->nullable();
             $table->timestamps();

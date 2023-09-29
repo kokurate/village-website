@@ -76,3 +76,5 @@ php artisan make:model JenisSurat -ms
 php artisan make:livewire VisitorSuratOnlineForm
 
 php artisan make:livewire AuthorHomeSuratOnline
+
+php artisan make:middleware ExpiredSuratOnline

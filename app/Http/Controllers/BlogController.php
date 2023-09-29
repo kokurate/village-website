@@ -9,6 +9,7 @@ use App\Models\Pekerjaan;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\SubCategory;
+use App\Models\SuratOnline;
 use App\Models\TingkatPendidikan;
 use App\Models\WilayahAdministratif;
 use Illuminate\Support\Facades\Cache;
@@ -187,5 +188,21 @@ class BlogController extends Controller
         ]);
     }
     
+    public function konfirmasi_surat_online($token){
+
+        $find = SuratOnline::where('token',$token)->first();
+
+        
+        if($find){
+            SuratOnline::where('token', $token)->update([
+                'status' => 'masuk',
+                'token' => null
+            ]);
+           return redirect()->route('surat_online')->with('success', 'Permohonan berhasil dikonfirmasi. Mohon menunggu pemberitahuan melalui email');
+        
+        }else{
+            abort(404);
+        }
+    }
 
 }
