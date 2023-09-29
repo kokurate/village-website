@@ -37,3 +37,4 @@ Route::get('statistik/agama', [BlogController::class,'statistik_agama'])->name('
 
 #=============== Surat Online
 Route::view('surat-online','front.pages.surat-online')->name('surat_online');
+Route::get('surat-online/konfirmasi/{token}',[BlogController::class,'konfirmasi_surat_online'])->name('konfirmasi_surat_online');

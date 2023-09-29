@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use App\Models\SuratOnline;
 use Livewire\Component;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 
 class VisitorSuratOnlineForm extends Component
 {
@@ -28,17 +30,38 @@ class VisitorSuratOnlineForm extends Component
         ]);
 
         $data = new SuratOnline();
-        $data->status = 'masuk';
+        $data->status = 'konfirmasi';
         $data->nama = $this->nama;
         $data->nik = $this->nik;
         $data->email = $this->email;
         $data->jenis_surat = $this->jenis_surat;
         $data->pesan = $this->pesan;
+        $data->token = base64_encode(Str::random(64));
         $saved = $data->save();
 
+        $data_email =  array(
+            'jenis_surat' => $data->jenis_surat,
+            'nama' => $data->nama,
+            'nik' => $data->nik,
+            'token' => $data->token,
+        );
+
+
+        $email = $data->email;
+        $nama = $data->nama;
+
         if($saved){
-            $this->dispatchBrowserEvent('success',['message' => 'Permohonan Berhasil Diajukan. Silahkan tunggu pemberitahuan melalui email']);
-            session()->flash('success','Permohonan Berhasil Diajukan. Silahkan tunggu pemberitahuan melalui email');
+
+            Mail::send('konfirmasi-surat-online-email-template', compact('data_email'), function($message) use ($email, $nama){
+                $message->from('noreply@desatoruakat.com', 'website_desa_toruakat');
+                $message->to($email,$nama)
+                        ->subject('Konfirmasi Permohonan Surat Online');
+            });
+
+
+
+            $this->dispatchBrowserEvent('success',['message' => 'Permohonan Berhasil Dibuat. Silahkan melakukan konfirmasi data melalui email']);
+            session()->flash('success','Permohonan Berhasil Dibuat. Silahkan melakukan konfirmasi data melalui email');
             $this->status = null;
             $this->nama = null;
             $this->nik = null;

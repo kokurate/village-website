@@ -36,7 +36,7 @@ class AuthorHomeSuratOnline extends Component
 
         // dd($data);
         $user->status = $selesai;
-        $user->email = null;
+        // $user->email = null;
         $update = $user->save();
         // $update = $user->update([
         //     'status' => $selesai,
