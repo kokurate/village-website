@@ -7,6 +7,14 @@
             </strong>
         </div>
     @endif
+
+    @if(Session::get('error'))
+        <div class="alert alert-danger">
+            <strong>
+                {{ Session::get('error') }}
+            </strong>
+        </div>
+    @endif
     
     <form wire:submit.prevent='addPermohonan()' method="post">
         <div class="row">
