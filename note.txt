@@ -80,3 +80,5 @@ php artisan make:livewire AuthorHomeSuratOnline
 php artisan make:middleware ExpiredSuratOnline
 
 php artisan make:model DataPenduduk -m
+
+php artisan make:livewire DataDesaPenduduk

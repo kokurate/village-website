@@ -44,6 +44,7 @@ Route::prefix('author')->name('author.')->group(function(){
         Route::view('/jenis-kelamin','back.pages.data-desa.jenis-kelamin')->name('jenis-kelamin');
         Route::view('/golongan-umur','back.pages.data-desa.golongan-umur')->name('golongan-umur');
         Route::view('/agama','back.pages.data-desa.agama')->name('agama');
+        Route::view('/penduduk','back.pages.data-desa.penduduk')->name('penduduk');
     });
 
 });

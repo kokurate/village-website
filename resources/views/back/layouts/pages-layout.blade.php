@@ -111,6 +111,14 @@
             }, 2000);
         });
 
+        document.addEventListener('fastreload', function () {
+            setTimeout(function () {
+                // Reload the current page
+                var currentURL = window.location.href;
+                window.location.href = currentURL;
+            }, 10);
+        });
+
       </script>
 
     @yield('js')
