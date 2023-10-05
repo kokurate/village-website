@@ -20,7 +20,7 @@ class AuthorHomeSuratOnline extends Component
     }
 
     public function selesai($id){
-        $user = SuratOnline::findOrFail($id);
+        $user = SuratOnline::with('data_penduduk')->findOrFail($id);
  
         $email = $user->email;
         $nama = $user->nama;
@@ -31,7 +31,7 @@ class AuthorHomeSuratOnline extends Component
             'tanggal_pengajuan' => Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at)->isoFormat('DD MMMM YYYY'),
             'jenis_surat' => $user->jenis_surat,
             'nama' => $user->nama,
-            'nik' => $user->nik,
+            'nik' => $user->data_penduduk->nik,
         );
 
         // dd($data);
@@ -53,6 +53,7 @@ class AuthorHomeSuratOnline extends Component
             });
 
             $this->dispatchBrowserEvent('success', ['message' => 'Permohonan Berhasil Diselesaikan']);
+            session()->flash('success','Permohonan Berhasil Diselesaikan.');
             $this->dispatchBrowserEvent('2sreload');
 
         }else{

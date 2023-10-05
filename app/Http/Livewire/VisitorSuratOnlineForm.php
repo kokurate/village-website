@@ -37,42 +37,49 @@ class VisitorSuratOnlineForm extends Component
 
        if ($dataPenduduk){
 
-            $data = new SuratOnline();
-            $data->status = 'konfirmasi';
-            $data->nama = $this->nama;
-            $data->nik = $dataPenduduk->id;
-            $data->email = $this->email;
-            $data->jenis_surat = $this->jenis_surat;
-            $data->pesan = $this->pesan;
-            $data->token = base64_encode(Str::random(64));
-            $saved = $data->save();
+                $data = new SuratOnline();
+            // with confirmatin email
+                // $data->status = 'konfirmasi';
+                // $data->token = base64_encode(Str::random(64));
+
+            // without confirmation email
+                $data->status = 'masuk';
+                $data->nama = $this->nama;
+                $data->nik = $dataPenduduk->id;
+                $data->email = $this->email;
+                $data->jenis_surat = $this->jenis_surat;
+                $data->pesan = $this->pesan;
+                $saved = $data->save();
 
 
-           
-            $data_email =  array(
-                'jenis_surat' => $data->jenis_surat,
-                'nama' => $data->nama,
-                'nik' => $dataPenduduk->nik,
-                'token' => $data->token,
-            );
+           // with confirmation email
+                // $data_email =  array(
+                //     'jenis_surat' => $data->jenis_surat,
+                //     'nama' => $data->nama,
+                //     'nik' => $dataPenduduk->nik,
+                //     'token' => $data->token,
+                // );
 
-
-        
-            $email = $data->email;
-            $nama = $data->nama;
+                // $email = $data->email;
+                // $nama = $data->nama;
 
             if($saved){
 
-                Mail::send('konfirmasi-surat-online-email-template', compact('data_email'), function($message) use ($email, $nama){
-                    $message->from('noreply@desatoruakat.com', 'website_desa_toruakat');
-                    $message->to($email,$nama)
-                            ->subject('Konfirmasi Permohonan Surat Online');
-                });
+                // with confirmation email
+                    // Mail::send('konfirmasi-surat-online-email-template', compact('data_email'), function($message) use ($email, $nama){
+                    //     $message->from('noreply@desatoruakat.com', 'website_desa_toruakat');
+                    //     $message->to($email,$nama)
+                    //             ->subject('Konfirmasi Permohonan Surat Online');
+                    // });
 
 
-
-                $this->dispatchBrowserEvent('success',['message' => 'Permohonan Berhasil Dibuat. Silahkan melakukan konfirmasi data melalui email']);
-                session()->flash('success','Permohonan Berhasil Dibuat. Silahkan melakukan konfirmasi data melalui email');
+                // with confirmation email
+                    // $this->dispatchBrowserEvent('success',['message' => 'Permohonan Berhasil Dibuat. Silahkan melakukan konfirmasi data melalui email']);
+                    // session()->flash('success','Permohonan Berhasil Dibuat. Silahkan melakukan konfirmasi data melalui email');
+                // without confirmation email
+                    $this->dispatchBrowserEvent('success',['message' => 'Permohonan Berhasil Diajukan. Silahkan menunggu pemberitahuan melalui email']);
+                    session()->flash('success','Permohonan Berhasil Diajukan. Silahkan menunggu pemberitahuan melalui email');
+                
                 $this->status = null;
                 $this->nama = null;
                 $this->nik = null;

@@ -48,12 +48,19 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    @if(Session::get('success'))
+                        <div class="alert alert-success">
+                            <strong>
+                                {{ Session::get('success') }}
+                            </strong>
+                        </div>
+                    @endif
                     @if ($detail)
                         <h2 class="text-center">Tanggal Pengajuan : <strong>{{ date_formatter($detail->created_at) }}</strong></h2>
                         <p class="">Jenis Surat : <strong>{{ $detail->jenis_surat }}</strong></p>
                         <p class="">Nama : <strong>{{ $detail->nama }}</strong></p>
                         <p class="">Email : <strong>{{ $detail->email }}</strong></p>
-                        <p class="">NIK : <strong>{{ $detail->nik }}</strong></p>
+                        <p class="">NIK : <strong>{{ $detail->data_penduduk->nik }}</strong></p>
                         <hr>
                         <p class="">Pesan : <strong>{{ $detail->pesan }}</strong></p>
                     @else
