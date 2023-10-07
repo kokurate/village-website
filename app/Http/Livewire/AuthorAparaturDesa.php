@@ -26,8 +26,9 @@ class AuthorAparaturDesa extends Component
         $saved = $aparatur->save();
 
         if($saved){
+            session()->flash('success','Aparatur berhasil ditambahkan.');
             $this->dispatchBrowserEvent('success', ['message' => 'Aparatur berhasil ditambahkan.']);
-            // $this->dispatchBrowserEvent('2sreload');
+            $this->dispatchBrowserEvent('2sreload');
         }else{
             $this->dispatchBrowserEvent('error', ['message' => 'Something went wrong.']);
 
@@ -63,7 +64,9 @@ class AuthorAparaturDesa extends Component
 
 
         $aparatur->delete();
+        session()->flash('success','Aparatur Desa telah berhasil dihapus.');
         $this->dispatchBrowserEvent('info',['message' => 'Aparatur Desa telah berhasil dihapus.']);
+        // $this->dispatchBrowserEvent('2sreload');
 
     }
 

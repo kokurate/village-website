@@ -79,6 +79,7 @@
             </div>
         </div>
       </div>
+
       <div class="col-lg-8 col-sm-12 my-2">
         <div class="card">
 

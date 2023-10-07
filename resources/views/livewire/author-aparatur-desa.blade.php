@@ -1,4 +1,13 @@
 <div>
+
+  @if(Session::get('success'))
+    <div class="alert alert-success">
+        <strong>
+            {{ Session::get('success') }}
+        </strong>
+    </div>
+  @endif
+
     <form method="POST"  wire:submit.prevent="AddAparatur()">
       <div class="row">
           <div class="col-md-4">
