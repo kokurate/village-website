@@ -44,12 +44,14 @@
                     </h3> --}}
                     <div class="mb-3">
                         <label class="form-label">Judul Post</label>
-                        <input type="text" class="form-control @error('post_title') is-invalid @enderror" name="post_title" placeholder="Masukkan judul...">
+                        <input type="text" class="form-control @error('post_title') is-invalid @enderror" 
+                            name="post_title" placeholder="Masukkan judul...">
                         <span class="text-danger error-text post_title_error"></span>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Content</label>
-                        <textarea class="ckeditor form-control @error('post_content') is-invalid @enderror" name="post_content" id="post_content" rows="8" placeholder="Content.."></textarea>
+                        <textarea class="ckeditor form-control @error('post_content') is-invalid @enderror" 
+                        name="post_content" id="post_content" rows="8" placeholder="Content.."></textarea>
                         <span class="text-danger error-text post_content_error"></span>
                     </div>
                 </div>
@@ -177,9 +179,21 @@
                 processData:false,
                 dataType :'json',
                 contentType:false,
+
+                // url:$(form).attr('action'),
+                // method:$(form).attr('method'),
+                // data = serialize();
+                // contentType = data("ajax-content-type")? data("ajax-content-type") : "application/x-www-form-urlencoded";
+                // processData = data("ajax-process-data") == "false" ? false : true;
+                // hasFile = find("input[type='file']").not("[disabled]").length;
+                // if (hasFile) {
+                //      data = new formdata();
+                //      contentType = false;
+                //      processData = false;
+                //     }
                 beforeSend:function(){
                     $(form).find('span.error-text').text('');
-                },
+                    },
                 success:function(response){
                     toastr.remove();
                     if(response.code == 1){
@@ -187,6 +201,13 @@
                         $('div.image_holder').html('');
                         CKEDITOR.instances.post_content.setData('');
                         toastr.success(response.msg);
+                         // Add a delay of 2 seconds before redirecting
+                        setTimeout(function () {
+                        // Redirect back to the previous page
+                        var currentURL = window.location.href;
+                        window.location.href = currentURL;
+                        }, 2000);
+                        
                     }else{
                         toastr.error(response.msg);
                     }
