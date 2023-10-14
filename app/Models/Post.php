@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
@@ -53,5 +54,25 @@ class Post extends Model
             return asset('storage/images/post_images/default.png');
         }
     }
+
+    
+    // When a post is being deleted, it will check if there is a featured_image, 
+    // and if so, it will delete the associated image from storage.delete image if 
+    // protected static function boot()
+    // {
+    //     parent::boot();
+
+    //     static::deleting(function($post) {
+    //         if ($post->featured_image) 
+    //         {
+    //             $path = "images/post_images/";
+    //             if (Storage::disk('public')->exists($path . $post->getAttributes()['featured_image'])) 
+    //             {
+    //                 Storage::disk('public')->delete($path . $post->getAttributes()['featured_image']);
+    //             }
+    //         }
+    //     });
+    // }
+
 
 }

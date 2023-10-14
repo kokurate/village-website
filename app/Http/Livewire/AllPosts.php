@@ -50,7 +50,11 @@ class AllPosts extends Component
         // dd('Yes Delete Now');
         $post = Post::find($id);
         $path = "images/post_images/";
-        $featured_image = $post->featured_image;
+        // $featured_image = $post->featured_image;
+        $featured_image = $post->getRawOriginal('featured_image');
+
+        // dd(Storage::disk('public')->path($path . $featured_image));
+
 
         if($featured_image != null  && Storage::disk('public')->exists($path.$featured_image)){
 
