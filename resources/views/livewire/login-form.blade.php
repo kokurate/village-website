@@ -15,7 +15,7 @@
     <form wire:submit.prevent="LoginHandler()" method="POST" autocomplete="off" novalidate="">
         <div class="mb-3">
           <label class="form-label">Email atau Username</label>
-          <input type="text" class="form-control @error('login_id') is-invalid @enderror" placeholder="kokurate" autocomplete="off" wire:model='login_id'>
+          <input type="text" class="form-control @error('login_id') is-invalid @enderror" placeholder="" autocomplete="off" wire:model='login_id'>
             @error('login_id')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
@@ -31,7 +31,7 @@
             @else
             type="text"
             @endif
-            class="form-control @error('password') is-invalid @enderror" placeholder="******" autocomplete="off"  
+            class="form-control @error('password') is-invalid @enderror" placeholder="" autocomplete="off"  
             wire:model.lazy="password"  
             >
             <span class="input-group-text">

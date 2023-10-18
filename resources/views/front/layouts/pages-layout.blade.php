@@ -88,7 +88,8 @@
 
     </main>
 
-    @include('front.layouts.inc.footer')
+    <br><br><br><br>
+    {{-- @include('front.layouts.inc.footer') --}}
 
     <!-- JS here -->
 
